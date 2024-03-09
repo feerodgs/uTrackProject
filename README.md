@@ -29,7 +29,7 @@ Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kube
 
 
 ### Arquitetura do Projeto
-![Arquitetura](https://drive.google.com/file/d/125aVNDTggN6iowI67NGzko8RqaPaobAz/view)
+![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/img/9c5f8a93-939d-4020-9132-53a472cca78a.png)
 
 ## Metodologia
 
