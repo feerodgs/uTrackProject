@@ -25,7 +25,7 @@
 
 ### Escopo:
 Este grupo irá desenvolver um estudo de integração de APIs de rastreio de encomendas, que irá centralizar em um único site todos os principais aplicativos de rastreio do Brasil.
-Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kubernetes que serão responsáveis por conter toda a infraestrutura da aplicação, desde a parte do web app, até a parte das requisições das APIs de rastreio, com exceção da autenticação de usuário, que será gerenciada pelo Amazon Cognito.
+Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kubernetes que serão responsáveis por conter toda a infraestrutura da aplicação, desde a parte do web app, até a parte das requisições das APIs de rastreio, com exceção da autenticação de usuário, que será gerenciada pelo Amazon Cognito
 
 
 ### Arquitetura do Projeto
