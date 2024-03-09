@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-utrackapp-dev-165647-authRole",
+      "UnauthRoleArn": "arn:aws:iam::256433828779:role/amplify-utrackapp-dev-165647-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::256433828779:role/amplify-utrackapp-dev-165647-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-utrackapp-dev-165647-deployment",
+      "UnauthRoleName": "amplify-utrackapp-dev-165647-unauthRole",
+      "StackName": "amplify-utrackapp-dev-165647",
+      "StackId": "arn:aws:cloudformation:sa-east-1:256433828779:stack/amplify-utrackapp-dev-165647/29e65e50-de4f-11ee-b405-066c85b575ab",
+      "AmplifyAppId": "d2ygq6b43yyint"
+    }
+  },
+  "auth": {
+    "utrackappa823fe8d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-utrackapp-dev-165647-deployment/amplify-cfn-templates/auth/utrackappa823fe8d-cloudformation-template.json",
+        "logicalId": "authutrackappa823fe8d"
+      },
+      "lastPushTimeStamp": "2024-03-09T20:00:16.945Z",
+      "output": {
+        "UserPoolId": "sa-east-1_VNzGvtS6B",
+        "AppClientIDWeb": "3sdkjpg16anbc018q4fvd7ussn",
+        "AppClientID": "5l8ejcmgcarmtddsm2pedoq7cu",
+        "IdentityPoolId": "sa-east-1:e198cda7-8fec-436f-868a-447d4ca92f59",
+        "UserPoolArn": "arn:aws:cognito-idp:sa-east-1:256433828779:userpool/sa-east-1_VNzGvtS6B",
+        "IdentityPoolName": "utrackappa823fe8d_identitypool_a823fe8d__dev",
+        "UserPoolName": "utrackappa823fe8d_userpool_a823fe8d"
+      },
+      "lastPushDirHash": "7YVlzAq1qPmMnrh34Gu7yIOwK5I="
+    }
+  }
+}
