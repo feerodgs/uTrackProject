@@ -1,22 +1,7 @@
 # uTrackProject
-%%
-Type: variant
-Subtag: basiceng
-Description: Basic English
-Added: 2015-12-29
-Prefix: en
-%%
 
-%%
-Type: variant
-Subtag: abl1943
-Description: Orthographic formulation of 1943 - Official in Brazil
-  (Formulário Ortográfico de 1943 - Oficial no Brasil)
-Added: 2015-05-06
-Prefix: pt-BR
-Comments: Denotes conventions established by the Academia Brasileira de
-  Letras in 1943 and generally used in Brazil until 2009
-%%
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.pt-br.md)
 
 ## Projeto Integrador V – Desenvolvimento Avançado de Aplicações
 
@@ -40,7 +25,7 @@ Comments: Denotes conventions established by the Academia Brasileira de
     - 044287@aluno.uricer.edu.br
 
 ## Sobre o projeto uTrack
-![uTrackLogo](https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.jpg)
+<img style='width=250px' src="https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.jpg">
 
 ### Escopo:
 Este grupo irá desenvolver um estudo de integração de APIs de rastreio de encomendas, que irá centralizar em um único site todos os principais aplicativos de rastreio do Brasil.
@@ -62,3 +47,9 @@ Com o objetivo de aprimorar a organização, comunicação e colaboração da eq
 
 
 ### Modelo Entidade-Relacionamento
+
+
+### Project Features
+- [x] Cadastro de usuário
+- [x] Cadastro de código de rastreio
+- [x] Atualizações de rastreio
