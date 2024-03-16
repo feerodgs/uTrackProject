@@ -1,5 +1,8 @@
 # uTrackProject
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.pt-br.md)
+
 ## Projeto Integrador V – Advanced Application Development
 
 ### Members:
@@ -41,3 +44,7 @@ In order to improve team organization, communication, and collaboration, we chos
 ### Entity-Relationship Model
 
 
+###
+- [x] User registration
+- [x] Tracking code registration
+- [x] Tracking updates
