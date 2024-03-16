@@ -26,7 +26,7 @@
 
 ## Sobre o projeto uTrack
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.png">
+    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png">
 </p>
 
 
@@ -36,7 +36,7 @@ Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kube
 
 
 ### Arquitetura do Projeto
-![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png)
+![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png)
 
 ### Metodologia
 
