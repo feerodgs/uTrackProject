@@ -25,7 +25,10 @@
     - 044287@aluno.uricer.edu.br
 
 ## Sobre o projeto uTrack
-<img style='width=250px' src="https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.jpg">
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png">
+</p>
+
 
 ### Escopo:
 Este grupo irá desenvolver um estudo de integração de APIs de rastreio de encomendas, que irá centralizar em um único site todos os principais aplicativos de rastreio do Brasil.
@@ -33,7 +36,7 @@ Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kube
 
 
 ### Arquitetura do Projeto
-![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png)
+![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png)
 
 ### Metodologia
 

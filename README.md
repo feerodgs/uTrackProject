@@ -25,7 +25,9 @@
     - 044287@aluno.uricer.edu.br
 
 ## About the uTrack project
-![uTrackLogo](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png)
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.png">
+</p>
 
 ### Scope:
 This group will develop a study on integrating parcel tracking APIs, which will centralize all major tracking applications in Brazil on a single website.
