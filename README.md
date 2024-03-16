@@ -42,6 +42,7 @@ Each member of the group will play specific and extremely important roles in the
 
 In order to improve team organization, communication, and collaboration, we chose to adapt the Scrum management framework. Each member's tasks will be organized into a workflow in the [Trello](https://trello.com/b/BJr7bmX3/utrack-app-trello) tool. This way, we can observe each group member's performance, their completed activities, and impediments. The board will be organized based on the agile Kanban method, separating activities into Todo, Doing, Review, and Done. Unlike the Scrum method, which would require Daily Meetings to align progress in each area of the project, we decided to hold "weekly meetings", where we will review the team's performance, discuss results, share learnings, make necessary adjustments, and assist team members with their impediments. These meetings will be held on Fridays during the dedicated periods for the integrative project execution.
 
+### Database
 
 ### Entity-Relationship Model
 
