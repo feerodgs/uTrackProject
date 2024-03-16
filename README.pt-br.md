@@ -22,7 +22,7 @@
     - 044287@aluno.uricer.edu.br
 
 ## Sobre o projeto uTrack
-![uTrackLogo](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.png)
+![uTrackLogo](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/logo.jpg)
 
 ### Escopo:
 Este grupo irá desenvolver um estudo de integração de APIs de rastreio de encomendas, que irá centralizar em um único site todos os principais aplicativos de rastreio do Brasil.
