@@ -35,7 +35,7 @@ For this purpose, a web app will be developed using pods orchestrated with Kuber
 
 ### Project Architecture
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png">
+    <img width="100%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png">
 </p>
 
 
