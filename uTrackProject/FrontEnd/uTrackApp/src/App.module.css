@@ -23,7 +23,6 @@
   margin-top: 50%;
   transition: margin-top 0.3s ease;
   position: relative !important;
-  background-color: pink;
 }
 
 .loginForm:hover {
