@@ -34,7 +34,10 @@ This group will develop a study on integrating parcel tracking APIs, which will 
 For this purpose, a web app will be developed using pods orchestrated with Kubernetes, which will be responsible for containing all the application's infrastructure, from the web app part to the part of tracking APIs requests, with the exception of user authentication, which will be managed by Amazon Cognito.
 
 ### Project Architecture
-![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png)
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png">
+</p>
+
 
 ### Methodology
 
