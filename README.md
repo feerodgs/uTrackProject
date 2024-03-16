@@ -46,7 +46,7 @@ In order to improve team organization, communication, and collaboration, we chos
 ### Entity-Relationship Model
 
 
-###
+### Project Features
 - [x] User registration
 - [x] Tracking code registration
 - [x] Tracking updates
