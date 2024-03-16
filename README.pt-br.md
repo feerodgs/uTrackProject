@@ -1,4 +1,22 @@
 # uTrackProject
+%%
+Type: variant
+Subtag: basiceng
+Description: Basic English
+Added: 2015-12-29
+Prefix: en
+%%
+
+%%
+Type: variant
+Subtag: abl1943
+Description: Orthographic formulation of 1943 - Official in Brazil
+  (Formulário Ortográfico de 1943 - Oficial no Brasil)
+Added: 2015-05-06
+Prefix: pt-BR
+Comments: Denotes conventions established by the Academia Brasileira de
+  Letras in 1943 and generally used in Brazil until 2009
+%%
 
 ## Projeto Integrador V – Desenvolvimento Avançado de Aplicações
 
