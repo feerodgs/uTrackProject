@@ -52,7 +52,7 @@ Com o objetivo de aprimorar a organização, comunicação e colaboração da eq
 ### Modelo Entidade-Relacionamento
 
 
-### Project Features
+### Funcionalidades do projeto
 - [x] Cadastro de usuário
 - [x] Cadastro de código de rastreio
 - [x] Atualizações de rastreio
