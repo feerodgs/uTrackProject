@@ -17,24 +17,79 @@
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .loginForm {
+  width: 475px;
   margin-top: 50%;
   transition: margin-top 0.3s ease;
   position: relative !important;
 }
 
-.loginForm:hover {
+.loginForm.expanded {
   margin-top: 0; 
 }
 
+.letterback {
+  background-color: #057D97;
+  width: 550px;
+  height: 30%;
+  margin-top: 20%;
+  position: absolute;
+  margin-top: calc(30% + 280px);
+  color: white;
+}
+
 .letterdown {
-  background-color: rgb(165, 108, 42);
-  width: 30%;
+  background-color: #0084A0;
+  width: 550px;
   height: 30%;
   margin-top: 20%;
   position: absolute;
   margin-top: calc(20% + 280px);
   color: white;
+}
+
+.letterfront {
+  width: 0;
+  height: 0;
+  border-left: 275px solid transparent;
+  border-right: 275px solid transparent;
+  border-bottom: 20vh solid #0A8AA6;
+  position: absolute;
+  top: calc(42% + 280px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+.logo {
+  width: 100px;
+}
+
+/* Resposivo para telas 750px ou inferiores*/
+@media screen and (max-width: 550px){
+  .letterback {
+    width: 500px;
+    height: 30%;
+  }
+  
+  .letterdown {
+    width: 500px;
+    height: 30%;
+  }
+
+  .letterfront {
+    width: 0;
+    height: 0;
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-bottom: 20vh solid #0A8AA6;
+    position: absolute;
+    top: calc(42% + 280px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+  }
 }
