@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f45d198-a030-4c5b-a01d-ad244974cb9c" name="Changes" comment="" />
+    <list default="true" id="0f45d198-a030-4c5b-a01d-ad244974cb9c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/uTrackApp/src/main/java/com/uTrack/uTrackApp/controller/UsuarioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uTrackApp/src/main/java/com/uTrack/uTrackApp/model/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uTrackApp/src/main/java/com/uTrack/uTrackApp/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uTrackApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/uTrackApp/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -38,6 +53,21 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fe_ro\OneDrive\Documentos\uTrackProject\uTrackProject\Backend\uTrackApp\src\main\java" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Backend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
