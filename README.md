@@ -1,8 +1,11 @@
 # uTrackProject
 
-## Projeto Integrador V – Desenvolvimento Avançado de Aplicações
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/feerodgs/uTrackProject/blob/main/README.pt-br.md)
 
-### Integrantes :
+## Projeto Integrador V – Advanced Application Development
+
+### Members:
 - Felipe Rodrigues 
     - 101447@aluno.uricer.edu.br
 
@@ -21,19 +24,33 @@
 - Ricieri Nava 
     - 044287@aluno.uricer.edu.br
 
-## Sobre o projeto
+## About the uTrack project
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/feerodgs/uTrackProject/blob/main/uTrackProject/imgs/logo.png">
+</p>
 
-### Escopo:
-Este grupo irá desenvolver um estudo de integração de APIs de rastreio de encomendas, que irá centralizar em um único site todos os principais aplicativos de rastreio do Brasil.
-Para isto, será desenvolvido um web app com o uso de pods orquestrados com Kubernetes que serão responsáveis por conter toda a infraestrutura da aplicação, desde a parte do web app, até a parte das requisições das APIs de rastreio, com exceção da autenticação de usuário, que será gerenciada pelo Amazon Cognito.
+### Scope:
+This group will develop a study on integrating parcel tracking APIs, which will centralize all major tracking applications in Brazil on a single website.
+For this purpose, a web app will be developed using pods orchestrated with Kubernetes, which will be responsible for containing all the application's infrastructure, from the web app part to the part of tracking APIs requests, with the exception of user authentication, which will be managed by Amazon Cognito.
+
+### Project Architecture
+<p align="center" width="100%">
+    <img width="100%" src="https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png">
+</p>
 
 
-### Arquitetura do Projeto
-![Arquitetura](https://github.com/feerodgs/uTrackProject/blob/kubernetes/uTrackProject/imgs/arquitetura.png)
+### Methodology
 
-## Metodologia
+Each member of the group will play specific and extremely important roles in the project development. We have divided the group in a way that each one can utilize and develop their skills in the areas where they excel the most. The frontend team consists of Nathan Gowacki, Ricieri Nava, and Gustavo Azambuja, who will be responsible for planning and executing from the visual identity of the application to frontend development, using technologies like Figma and Photoshop for design and UI/UX, and React.js for application development. The backend team consists of Felipe Rodrigues and Luiz Augusto Dalla Rosa, who will play a fundamental role in creating the MySQL database and developing Java scripts responsible for communicating with carrier APIs, such as Correios, for example. The infrastructure is managed by Marco Boschetti, who will develop the entire project infrastructure, including creating Kubernetes clusters, integration with Cognito for user authentication, among other tasks.
 
-Cada membro do grupo desempenhará funções específicas e de extrema importância no desenvolvimento do projeto. Separamos o grupo de maneira que cada um possa utilizar ao máximo e desenvolver suas capacidades nas áreas em que mais se destacam. A equipe de frontend é composta por Nathan Gowacki, Ricieri Nava e Gustavo Azambuja, os quais serão responsáveis por planejar e executar desde a identidade visual do aplicativo até o desenvolvimento do frontend, utilizando tecnologias como Figma e Photoshop para design e UI/UX, e React.js para o desenvolvimento da aplicação. A equipe de backend é composta por Felipe Rodrigues e Luiz Augusto Dalla Rosa, os quais desempenharão um papel fundamental na criação do banco de dados MySQL e no desenvolvimento de scripts em Java que serão responsáveis pela comunicação com as APIs das transportadoras, como Correios, por exemplo. A infraestrutura é composta por Marco Boschetti, que desenvolverá toda a infraestrutura do projeto, incluindo a criação dos clusters Kubernetes, integração com o Cognito para autenticação de usuários, entre outras tarefas.
+In order to improve team organization, communication, and collaboration, we chose to adapt the Scrum management framework. Each member's tasks will be organized into a workflow in the [Trello](https://trello.com/b/BJr7bmX3/utrack-app-trello) tool. This way, we can observe each group member's performance, their completed activities, and impediments. The board will be organized based on the agile Kanban method, separating activities into Todo, Doing, Review, and Done. Unlike the Scrum method, which would require Daily Meetings to align progress in each area of the project, we decided to hold "weekly meetings", where we will review the team's performance, discuss results, share learnings, make necessary adjustments, and assist team members with their impediments. These meetings will be held on Fridays during the dedicated periods for the integrative project execution.
+
+### Database
+
+### Entity-Relationship Model
 
 
-Com o objetivo de aprimorar a organização, comunicação e colaboração da equipe, optamos por adaptar o framework de gerenciamento Scrum. As tarefas de cada membro serão organizadas em um fluxo de trabalho na ferramenta [Trello](https://trello.com/b/BJr7bmX3/utrack-app-trello). Dessa maneira, poderemos observar o desempenho de cada membro do grupo, suas atividades realizadas e impedimentos. O quadro será organizado com base no método ágil Kanban, separando as atividades em Todo, Doing, Review e Done. Ao contrário do método Scrum, no qual seria necessário realizar Daily Meetings para alinhar o andamento em cada área do projeto, decidimos realizar "weekly meetings", onde iremos revisar o desempenho da equipe, discutir resultados, compartilhar aprendizados, fazer ajustes necessários e auxiliar os membros da equipe com seus impedimentos. Essas reuniões serão realizadas durante as sextas-feiras nos períodos dedicados à execução do projeto integrador.
+### Project Features
+- [x] User registration
+- [x] Tracking code registration
+- [x] Tracking updates

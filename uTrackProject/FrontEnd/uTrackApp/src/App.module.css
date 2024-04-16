@@ -1,0 +1,40 @@
+.App {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginForm {
+  margin-top: 50%;
+  transition: margin-top 0.3s ease;
+  position: relative !important;
+}
+
+.loginForm:hover {
+  margin-top: 0; 
+}
+
+.letterdown {
+  background-color: rgb(165, 108, 42);
+  width: 30%;
+  height: 30%;
+  margin-top: 20%;
+  position: absolute;
+  margin-top: calc(20% + 280px);
+  color: white;
+}
