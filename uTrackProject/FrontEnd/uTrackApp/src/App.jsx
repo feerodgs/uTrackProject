@@ -55,14 +55,22 @@ function App() {
     currentSession();
   }, []);
 
-  const toggleExpansion = () => {
-    setIsExpanded(!isExpanded);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsExpanded(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={styles.App}>
       <img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />
       <div className={styles.letter}>
+        {/* back triangle */}
+        {route !== 'authenticated' && <div className={styles.lettertop}></div>}
+        {/* back div */}
+        {route !== 'authenticated' && <div className={styles.letterback}></div>}
         <div className={`${styles.loginForm} ${isExpanded ? styles.expanded : ''}`}>
           <Authenticator formFields={formFields}>
             {({ signOut, user }) => (
@@ -76,7 +84,9 @@ function App() {
             )}
           </Authenticator>
         </div>
-        {route !== 'authenticated' && <div className={styles.letterdown} onClick={toggleExpansion}></div>}
+        {/* front div */}
+        {route !== 'authenticated' && <div className={styles.letterdown}></div>}
+        {/* front triangle */}
         {route !== 'authenticated' && <div className={styles.letterfront}></div>}
       </div>
     </div>

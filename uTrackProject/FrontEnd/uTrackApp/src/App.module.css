@@ -1,3 +1,6 @@
+/* Body style */
+
+
 .App {
   display: flex;
   flex-flow: column wrap;
@@ -13,6 +16,7 @@
 }
 
 .letter {
+  position: relative;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -28,26 +32,39 @@
 }
 
 .loginForm.expanded {
-  margin-top: 0; 
+  margin-top: 0;
+  transition: margin-top 0.3s ease;
 }
 
 .letterback {
   background-color: #057D97;
   width: 550px;
-  height: 30%;
+  height: 50%;
   margin-top: 20%;
   position: absolute;
-  margin-top: calc(30% + 280px);
+  margin-top: calc(10% + 280px);
+  color: white;
+}
+.lettertop {
+  width: 0;
+  height: 0;
+  border-left: 275px solid transparent;
+  border-right: 275px solid transparent;
+  border-bottom: 20vh solid #057D97;
+  position: absolute;
+  top: calc(-49.6% + 280px);
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
 }
 
 .letterdown {
   background-color: #0084A0;
   width: 550px;
-  height: 30%;
+  height: 60%;
   margin-top: 20%;
   position: absolute;
-  margin-top: calc(20% + 280px);
+  margin-top: calc(50% + 280px);
   color: white;
 }
 
@@ -58,7 +75,7 @@
   border-right: 275px solid transparent;
   border-bottom: 20vh solid #0A8AA6;
   position: absolute;
-  top: calc(42% + 280px);
+  top: calc(28% + 280px);
   left: 50%;
   transform: translateX(-50%);
   color: white;
