@@ -75,10 +75,37 @@ function App() {
           <Authenticator formFields={formFields}>
             {({ signOut, user }) => (
               <div className={styles.container}>
-                <p>
-                  Olá {user.username}, bem vindo ao uTrack.
-                </p>
-                <p>Email: {user.signInDetails.loginId}</p>
+                <main className={styles.main}>
+                  <div className={styles.filterSection}>
+                    <div className={styles.filterHeader}>
+                      <a href="#" className={styles.filterBtn}><i>A</i> Filtros</a>
+                      <a href="#" className={styles.filterBtn}><i>A</i> Adicionar</a>
+                    </div>
+                    <div className={styles.filter}>
+                      <label htmlFor="produto" className={styles.label}>Produto</label>
+                      <input type="text" className={styles.textInput} placeholder='texto' id='produto'/>
+                      <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
+                      <input type="text" className={styles.textInput} placeholder='texto' id='codRastreio'/>
+                      <label htmlFor="staus" className={styles.label}>Status</label>
+                      <input type="text" className={styles.textInput} placeholder='texto' id='status'/>
+                      <label htmlFor="deDat" className={styles.label}>De</label>
+                      <input type="text" className={styles.textInput} placeholder='texto' id='deDat'/>
+                      <label htmlFor="ateDat" className={styles.label}>Até</label>
+                      <input type="text" className={styles.textInput} placeholder='texto' id='ateDat'/>
+                      <input type="text" className={styles.submitBtn} value="Pesquisar"/>
+                    </div>
+                  </div>
+                  <div className="section">
+                    <div className={styles.box}>
+                      <h3 className={styles.subtitulo}>Produto</h3>
+                      <p>Código de rastreio</p>
+                      <div className={styles.legenda}><p>12345678</p></div>
+                      <p>Previsão de entrega</p>
+                      <div className={styles.legenda}><p>01/01/0101</p></div>
+                      <a href="#">ver mais</a>
+                    </div>
+                  </div>
+                </main>
                 <button onClick={signOut}>Sair</button>
               </div>
             )}
