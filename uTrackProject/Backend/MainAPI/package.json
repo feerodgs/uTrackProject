@@ -1,0 +1,24 @@
+{
+  "name": "utrackappapi",
+  "version": "1.0.0",
+  "description": "Api Central para comunicação dos recursos do projeto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feerodgs/uTrackProject.git"
+  },
+  "author": "uTrackApp",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/feerodgs/uTrackProject/issues"
+  },
+  "homepage": "https://github.com/feerodgs/uTrackProject#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "typescript": "^5.4.5"
+  }
+}

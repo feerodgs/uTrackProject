@@ -21,29 +21,43 @@ I18n.putVocabularies({
   }
 });
 
-const formFields = {
-  signIn: {
-    password: {
-      placeholder: 'Digite sua senha',
-    },
-  },
-  signUp: {
-    password: {
-      placeholder: 'Digite sua senha:',
-      isRequired: false,
-    },
-    confirm_password: {
-      label: 'Confirme sua senha',
-      placeholder: 'Por favor, confirme sua senha',
-    },
-  }
-}
-
 
 function App() {
   const { route } = useAuthenticator(context => [context.route]);
   const [accessToken, setAccessToken] = useState(null);
   const [idToken, setIdToken] = useState(null);
+  const [name, setName] = useState('');
+
+  const formFields = {
+    signIn: {
+      password: {
+        placeholder: 'Digite sua senha',
+      },
+    },
+    signUp: {
+      name: {
+        label: 'Nome',
+        placeholder: 'Como devemos chamá-lo?',
+        isRequired: true,
+        order: 3,
+        onChange: (e) => setName(e.target.value),
+      },
+      password: {
+        placeholder: 'Digite sua senha:',
+        isRequired: true,
+      },
+      confirm_password: {
+        label: 'Confirme sua senha',
+        placeholder: 'Por favor, confirme sua senha',
+        isRequired: true,
+      },
+    }
+  }
+  
+
+  useEffect(() => {
+    console.log(name)
+  }, [name])
 
   useEffect(() => {
     const currentSession = async () => {
@@ -70,8 +84,9 @@ function App() {
             <div className={styles.container}>
               {/* Aqui podemos renderizar os componentes que irão compor o App */}
               <p>
-                Olá {user.username}, bem vindo ao uTrack. {/* Cada user tem um user.username único, útil para salvar no banco de dados como a identificação de cada user. */}
+                Olá {name}, bem vindo ao uTrack. {/* Cada user tem um user.username único, útil para salvar no banco de dados como a identificação de cada user. */}
               </p>
+              <p>Seu id de usuário é: {user.username}</p>
               {/* O email do usuário pode ser acessado em {user.signInDetails.loginId} */}
               <p>Email: {user.signInDetails.loginId}</p>
               {/*
