@@ -1,133 +1,3 @@
-/* imports */
-  /* Fonte */
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-  /* Variáveis */
-  @import './variables.css';
-
-/* Body style */
-body {
-    background: var(--background-color);
-    font-family: var(--font-family);
-}
-
-/* Basic Components */
-  /* Componente bloco rastreios*/
-  .box {
-    width: 400px;
-    height: 320px;
-    border-radius: 10px;
-    background: var(--boxesColor);
-    grid-area: box;
-    padding: 5px;
-    display: grid;
-    grid-template-areas: 'subtitulo'
-    'texto1'
-    'legenda1'
-    'texto2'
-    'legenda2'
-    'openBtn';
-  }
-  .box p:nth-child(1) {
-    opacity: 0.5;
-    margin-left: 25px;
-    grid-area: texto1;
-  }
-  .box p:nth-child(2) {
-    opacity: 0.5;
-    margin-left: 25px;
-    grid-area: texto2;
-  }
-  .box div:nth-child(1) {
-    grid-area: legenda1;
-  }
-  .box div:nth-child(2) {
-    grid-area: legenda2;
-  }
-  .box a {
-    color: var(--primaryColor);
-    text-decoration: none;
-    grid-area: openBtn;
-  }
-
-  /* Componente Subtítulo */
-  .subtitulo {
-    text-transform: uppercase;
-    margin-left: 25px;
-    grid-area: subtitulo;
-  }
-
-  /* Componente Legenda */
-  .legenda {
-    background: #FCFCFC;
-    width: 247px;
-    height: 40px;
-    border-radius: 10px;
-  }
-  .label {
-    color: white;
-    text-transform: uppercase;
-  }
-  .textInput {
-    background: none;
-    outline: none;
-    border: none;
-    border-bottom: 2px solid var(--primaryColor);
-    width: 200px;
-  }
-  .filterBtn {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-left: 5px;
-    border-left: 1px solid black;
-  }
-  .filterBtn i {
-    margin-left: 5px;
-  }
-  .submitBtn {
-    background: var(--primaryColor);
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    outline: none;
-  }
-  .submitBtn:hover {
-    background: none;
-    border: 2px solid var(--primaryColor);
-    color: var(--primaryColor);
-  }
-
-
-
-
-
-
-
-
-/* alignments */
-.main {
-  max-width: 1800px;
-  height: 500px;
-  display: grid;
-  grid-template-areas: 'filter filter filter filter'
-  'section section section section';
-}
-.filterSection {
-  grid-area: filter;
-}
-.filter {
-  border: 3px solid var(--primaryColor);
-}
-.section {
-  grid-area: section;
-  display: grid;
-  grid-template-areas: 'box box box box';
-  grid-gap: 10px;
-}
-
 .App {
   display: flex;
   flex-flow: column wrap;
@@ -143,97 +13,28 @@ body {
 }
 
 .letter {
-  position: relative;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
 }
 
 .loginForm {
-  width: 475px;
   margin-top: 50%;
   transition: margin-top 0.3s ease;
   position: relative !important;
 }
 
-.loginForm.expanded {
-  margin-top: 0;
-  transition: margin-top 0.3s ease;
-}
-
-.letterback {
-  background-color: var(--secondaryColor);
-  width: 550px;
-  height: 50%;
-  margin-top: 20%;
-  position: absolute;
-  margin-top: calc(10% + 280px);
-  color: white;
-}
-.lettertop {
-  width: 0;
-  height: 0;
-  border-left: 275px solid transparent;
-  border-right: 275px solid transparent;
-  border-bottom: 20vh solid var(--secondaryColor);
-  position: absolute;
-  top: calc(-49.6% + 280px);
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
+.loginForm:hover {
+  margin-top: 0; 
 }
 
 .letterdown {
-  background-color: var(--thirdColor);
-  width: 550px;
-  height: 60%;
+  background-color: rgb(165, 108, 42);
+  width: 30%;
+  height: 30%;
   margin-top: 20%;
   position: absolute;
-  margin-top: calc(50% + 280px);
+  margin-top: calc(20% + 280px);
   color: white;
-}
-
-.letterfront {
-  width: 0;
-  height: 0;
-  border-left: 275px solid transparent;
-  border-right: 275px solid transparent;
-  border-bottom: 20vh solid var(--primaryColor);
-  position: absolute;
-  top: calc(28% + 280px);
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-}
-
-.logo {
-  width: 100px;
-}
-
-/* Resposivo para telas 750px ou inferiores*/
-@media screen and (max-width: 550px){
-  .letterback {
-    width: 500px;
-    height: 30%;
-  }
-  
-  .letterdown {
-    width: 500px;
-    height: 30%;
-  }
-
-  .letterfront {
-    width: 0;
-    height: 0;
-    border-left: 250px solid transparent;
-    border-right: 250px solid transparent;
-    border-bottom: 20vh solid var(--primaryColor);
-    position: absolute;
-    top: calc(42% + 280px);
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-  }
 }
