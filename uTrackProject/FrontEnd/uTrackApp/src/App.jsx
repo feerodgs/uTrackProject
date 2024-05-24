@@ -33,7 +33,7 @@ const formFields = {
       isRequired: false,
     },
     confirm_password: {
-      label: 'Confirme sua senha',
+      label: 'Confirme a senha', // Trocar aqui
       placeholder: 'Por favor, confirme sua senha',
     },
   }
