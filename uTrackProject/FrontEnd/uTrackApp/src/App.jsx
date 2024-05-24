@@ -17,6 +17,8 @@ I18n.putVocabularies({
   }
 });
 
+<<<<<<< HEAD
+=======
 const formFields = {
   signIn: {
     password: {
@@ -34,12 +36,48 @@ const formFields = {
     },
   }
 }
+>>>>>>> 0c68116ee1d418a25906488cb56430ff415d7a05
 
 function App() {
   const { route } = useAuthenticator(context => [context.route]);
   const [accessToken, setAccessToken] = useState(null);
   const [idToken, setIdToken] = useState(null);
+<<<<<<< HEAD
+  const [name, setName] = useState('');
+
+  const formFields = {
+    signIn: {
+      password: {
+        placeholder: 'Digite sua senha',
+      },
+    },
+    signUp: {
+      name: {
+        label: 'Nome',
+        placeholder: 'Como devemos chamá-lo?',
+        isRequired: true,
+        order: 3,
+        onChange: (e) => setName(e.target.value),
+      },
+      password: {
+        placeholder: 'Digite sua senha:',
+        isRequired: true,
+      },
+      confirm_password: {
+        label: 'Confirme sua senha',
+        placeholder: 'Por favor, confirme sua senha',
+        isRequired: true,
+      },
+    }
+  }
+  
+
+  useEffect(() => {
+    console.log(name)
+  }, [name])
+=======
   const [isExpanded, setIsExpanded] = useState(false);
+>>>>>>> 0c68116ee1d418a25906488cb56430ff415d7a05
 
   useEffect(() => {
     const currentSession = async () => {
@@ -67,6 +105,26 @@ function App() {
     <div className={styles.App}>
       <img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />
       <div className={styles.letter}>
+<<<<<<< HEAD
+        <Authenticator className={styles.loginForm} formFields={formFields} >
+          {({ signOut, user }) => (
+            <div className={styles.container}>
+              {/* Aqui podemos renderizar os componentes que irão compor o App */}
+              <p>
+                Olá {name}, bem vindo ao uTrack. {/* Cada user tem um user.username único, útil para salvar no banco de dados como a identificação de cada user. */}
+              </p>
+              <p>Seu id de usuário é: {user.username}</p>
+              {/* O email do usuário pode ser acessado em {user.signInDetails.loginId} */}
+              <p>Email: {user.signInDetails.loginId}</p>
+              {/*
+                <p>{idToken}</p>
+                <p>{accessToken}</p> {/* Tokens de sessão do usuário, usados para mandar como uma "prova" de que o usuário está autenticado para as apis */}
+              <button onClick={signOut}>Sair</button>
+            </div>
+          )}
+        </Authenticator>
+        {route !== 'authenticated' && <div className={styles.letterdown}> A ideia é essa, ai vcs se viram</div>}
+=======
         {/* back triangle */}
         {route !== 'authenticated' && <div className={styles.lettertop}></div>}
         {/* back div */}
@@ -115,6 +173,7 @@ function App() {
         {route !== 'authenticated' && <div className={styles.letterdown}></div>}
         {/* front triangle */}
         {route !== 'authenticated' && <div className={styles.letterfront}></div>}
+>>>>>>> 0c68116ee1d418a25906488cb56430ff415d7a05
       </div>
     </div>
   )
