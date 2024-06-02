@@ -1,113 +1,14 @@
 /* imports */
   /* Fonte */
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-  /* Variáveis */
+  /* Variï¿½veis */
   @import './variables.css';
-
-/* Body style */
-body {
-    background: var(--background-color);
-    font-family: var(--font-family);
-}
-
-/* Basic Components */
-  /* Componente bloco rastreios*/
-  .box {
-    width: 400px;
-    height: 320px;
-    border-radius: 10px;
-    background: var(--boxesColor);
-    grid-area: box;
-    padding: 5px;
-    display: grid;
-    grid-template-areas: 'subtitulo'
-    'texto1'
-    'legenda1'
-    'texto2'
-    'legenda2'
-    'openBtn';
-  }
-  .box p:nth-child(1) {
-    opacity: 0.5;
-    margin-left: 25px;
-    grid-area: texto1;
-  }
-  .box p:nth-child(2) {
-    opacity: 0.5;
-    margin-left: 25px;
-    grid-area: texto2;
-  }
-  .box div:nth-child(1) {
-    grid-area: legenda1;
-  }
-  .box div:nth-child(2) {
-    grid-area: legenda2;
-  }
-  .box a {
-    color: var(--primaryColor);
-    text-decoration: none;
-    grid-area: openBtn;
-  }
-
-  /* Componente Subtítulo */
-  .subtitulo {
-    text-transform: uppercase;
-    margin-left: 25px;
-    grid-area: subtitulo;
-  }
-
-  /* Componente Legenda */
-  .legenda {
-    background: #FCFCFC;
-    width: 247px;
-    height: 40px;
-    border-radius: 10px;
-  }
-  .label {
-    color: white;
-    text-transform: uppercase;
-  }
-  .textInput {
-    background: none;
-    outline: none;
-    border: none;
-    border-bottom: 2px solid var(--primaryColor);
-    width: 200px;
-  }
-  .filterBtn {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-left: 5px;
-    border-left: 1px solid black;
-  }
-  .filterBtn i {
-    margin-left: 5px;
-  }
-  .submitBtn {
-    background: var(--primaryColor);
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    outline: none;
-  }
-  .submitBtn:hover {
-    background: none;
-    border: 2px solid var(--primaryColor);
-    color: var(--primaryColor);
-  }
+  /*  Template padrÃ£o de componentes */
+  @import './AppTemplate.css';
 
 
 
-
-
-
-
-
-/* alignments */
+/* CÃ³digo */
 .main {
   max-width: 1800px;
   height: 500px;
@@ -122,10 +23,27 @@ body {
   border: 3px solid var(--primaryColor);
 }
 .section {
-  grid-area: section;
-  display: grid;
-  grid-template-areas: 'box box box box';
-  grid-gap: 10px;
+  margin-top: 25px;
+}
+
+.trackBox {
+  background: var(--primaryColor);
+  width: 500px;
+  margin-top: 200px;
+  border-radius: 20px;
+  position: absolute;
+  right: -500px; 
+}
+
+.trackBox p {
+  color: var(--boxesColor);
+  margin-left: 25px;
+}
+.trackBox a {
+  color: var(--boxesColor);
+  text-decoration: none;
+  margin-top: 25px;
+  margin-left: 25px;
 }
 
 .App {
@@ -136,6 +54,7 @@ body {
 }
 
 .container {
+  width: 1000px;
   display: flex;
   flex-flow: column wrap;
   align-items: center;

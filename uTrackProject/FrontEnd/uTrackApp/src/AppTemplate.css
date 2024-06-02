@@ -1,0 +1,115 @@
+/* Body style */
+body {
+    background: var(--background-color);
+    font-family: var(--font-family);
+}
+
+/* Basic Components */
+  /* Componente bloco rastreios*/
+  .box {
+    width: 400px;
+    height: 320px;
+    border-radius: 10px;
+    background: var(--boxesColor);
+    padding: 5px;
+    display: grid;
+    grid-template-areas: 
+    'subtitulo'
+    'texto1'
+    'legenda1'
+    'texto2'
+    'legenda2'
+    'openBtn';
+  }
+
+  .box p:nth-of-type(2) {
+    opacity: 0.5;
+    margin-left: 25px;
+    grid-area: texto2;
+  }
+
+
+  .box p:nth-of-type(1) {
+    opacity: 0.5;
+    margin-left: 25px;
+    grid-area: texto1;
+  }
+  
+  .box div:nth-of-type(1) {
+    grid-area: legenda1;
+    margin-left: 25px;
+  }
+  .box div:nth-of-type(1) p {
+    margin-top: 0px;
+    margin-left: 5px;
+  }
+  .box div:nth-of-type(2) {
+    grid-area: legenda2;
+    margin-left: 25px;
+  }
+  .box div:nth-of-type(2) p {
+    margin-top: 0px;
+    margin-left: 5px;
+  }
+
+  .box a {
+    color: var(--primaryColor);
+    text-decoration: none;
+    grid-area: openBtn;
+    margin-top: 25px;
+    margin-left: 25px;
+  }
+
+  
+  /* Componente Legenda */
+  .legenda {
+    background: #FCFCFC;
+    width: 247px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 24px;
+  }
+
+  /* Componente Subt�tulo */
+  .subtitulo {
+    text-transform: uppercase;
+    margin-left: 25px;
+    grid-area: subtitulo;
+  }
+
+  .label {
+    color: white;
+    text-transform: uppercase;
+  }
+  .textInput {
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--primaryColor);
+    width: 200px;
+  }
+  .filterBtn {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: 5px;
+    border-left: 1px solid black;
+  }
+  .filterBtn i {
+    margin-left: 5px;
+  }
+  .submitBtn {
+    background: var(--primaryColor);
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    outline: none;
+  }
+  .submitBtn:hover {
+    background: none;
+    border: 2px solid var(--primaryColor);
+    color: var(--primaryColor);
+  }
