@@ -20,11 +20,9 @@ const sendUserParams = async (user) => {
 
 export const createUser = async (params) => {
     const user = new User({
-        nome: params.nome,
         email: params.email,
     })
     return sendUserParams(user)
-
 }
 
 export const deleteUser = async (id) => {

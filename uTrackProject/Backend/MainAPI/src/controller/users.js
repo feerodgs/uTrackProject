@@ -18,7 +18,6 @@ router.get("/:id", async (request, response) => {
 // new user
 router.post("/", async (request, response) => {
     const params = {
-        nome: request.body.nome,
         email: request.body.email,
     }
     const user = await createUser(params)

@@ -35,9 +35,9 @@ async function fetchTrack(id) {
 
 const sendTrackParams = async (track) => {
     // POST e mandar o codigo da encomenda
-    // armazenar o codigo do usuario e do rastreio no banco
+    // armazenar o codigo do usuario e do rastreio no banco // a fazer
     // return fetchTrack passando id
-    
+
     return fetchTrack(track.codigoRastreio)
 }
 
