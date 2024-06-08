@@ -5,6 +5,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { I18n } from 'aws-amplify/utils';
 import { translations } from '@aws-amplify/ui-react';
+import { FaMoon, FaSun } from "react-icons/fa";
 
 I18n.putVocabularies(translations);
 I18n.setLanguage('pt');
@@ -35,7 +36,6 @@ const formFields = {
   }
 }
 
-// Exemplo de dados simulados (mockData)
 const mockData = [
   {
     codigoRastreio: "QQ830773725BR",
@@ -86,7 +86,6 @@ const mockData = [
       }
     ]
   }
-  // Adicione mais rastreios conforme necessário
 ];
 
 function App() {
@@ -94,8 +93,24 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   const [idToken, setIdToken] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [encomendas, setEncomendas] = useState(mockData); // Usei estado para armazenar as encomendas, OBS: retirar o mockData com a APi funcionando
-  const [selectedTracking, setSelectedTracking] = useState(null); // controla o rastreio selecionado
+  const [encomendas, setEncomendas] = useState(mockData);
+  const [selectedTracking, setSelectedTracking] = useState(null);
+  const [isMoonIcon, setIsMoonIcon] = useState(true);
+
+  const changeIcon = () => {
+    const newIsMoonIcon = !isMoonIcon;
+    setIsMoonIcon(newIsMoonIcon);
+
+    if (newIsMoonIcon) {
+      document.body.classList.add('dark-mode');
+      document.body.classList.remove('light-mode');
+    } else {
+      document.body.classList.add('light-mode');
+      document.body.classList.remove('dark-mode');
+    }
+
+    return newIsMoonIcon;
+  };
 
   useEffect(() => {
     const currentSession = async () => {
@@ -119,78 +134,30 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Busca os dados da API
-  // Para funcionar a busca pela API quem for ajustar descomente o código abaixo, como será repassado a APi ainda tem que ser ajustado para coletar corretamente algumas informações como o nome do produto...
-  /*
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://www.cepcerto.com/ws/encomenda-json/QQ830773725BR/45eae6254b24ec6f27ab9ded556b9b538223939f/'); // NOTA ver com felipa se vão passar o ID do cliente e adicionar neste link
-        const data = await response.json();
-        setEncomendas(data); // Ajuste a estrutura dos dados conforme necessário
-      } catch (error) {
-        console.log('Erro ao buscar dados de rastreamento:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  */
-
   return (
     <div className={styles.App}>
       <img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />
+      <div className='slider-container' onClick={changeIcon}>
+        <div className={`slider ${isMoonIcon ? 'slide-left' : 'slide-right'}`}>
+          {isMoonIcon ? <FaMoon size={24} /> : <FaSun size={24} />}
+        </div>
+      </div>
       <div className={styles.letter}>
-        {/* back triangle */}
         {route !== 'authenticated' && <div className={styles.lettertop}></div>}
-        {/* back div */}
-        {route !== 'authenticated' && <div className={styles.letterback}></div>}
-        <div className={`${styles.loginForm} ${isExpanded ? styles.expanded : ''}`}>
-          <Authenticator formFields={formFields}>
+        {route !== 'authenticated' && <div className={styles.lettercorner}></div>}
+        <div className={styles.letterbody}>
+          <Authenticator formFields={formFields} className={styles.formulario}>
             {({ signOut, user }) => (
-              <div className={styles.container}>
-                <main className={styles.main}>
-                  <div className={styles.filterSection}>
-                    <div className={styles.filterHeader}>
-                      <a href="#" className={styles.filterBtn}><i>A</i> Filtros</a>
-                      <a href="#" className={styles.filterBtn}><i>A</i> Adicionar</a>
-                    </div>
-                    <div className={styles.filter}>
-                      <label htmlFor="produto" className={styles.label}>Produto</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='produto'/>
-                      <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='codRastreio'/>
-                      <label htmlFor="staus" className={styles.label}>Status</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='status'/>
-                      <label htmlFor="deDat" className={styles.label}>De</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='deDat'/>
-                      <label htmlFor="ateDat" className={styles.label}>Até</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='ateDat'/>
-                      <input type="text" className={styles.submitBtn} value="Pesquisar"/>
-                    </div>
+              <div>
+                <main>
+                  <h1 className={styles.title}>Sistema de rastreio de encomendas</h1>
+                  <div className={isMoonIcon ? styles.box : styles.boxDark}>
+                    <h3 className={styles.subtitulo}>Pesquisar encomenda:</h3>
+                    <input className={styles.textInput} type="text" placeholder="Insira o código de rastreio" />
+                    <button className={styles.submitBtn}>Rastrear</button>
                   </div>
-                  {/* gerador dos blocos */}
-                  <div className={styles.section}>
-                    {encomendas.map((encomenda, index) => (
-                      <div className={styles.box} key={index}>
-                        <h3 className={styles.subtitulo}>{encomenda.produto}</h3>
-                        <p>Código de Rastreio:</p>
-                        <div className={styles.legenda}>
-                          <p>{encomenda.codigoRastreio}</p>
-                        </div>
-                        <p>Previsão de Entrega:</p>
-                        <div className={styles.legenda}>
-                          <p>{encomenda.previsaoEntrega}</p>
-                        </div>
-                        <a href="#" onClick={() => setSelectedTracking(encomenda)}>Ver mais</a>
-                        <br/><br />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Div com o rastreio completo */}
                   {selectedTracking && (
-                    <div className={styles.trackBox}>
+                    <div className={isMoonIcon ? styles.trackBox : styles.trackBoxDark}>
                       <div>
                         <h3 className={styles.subtitulo}>{selectedTracking.produto}</h3>
                         <a href="#" onClick={() => setSelectedTracking(null)}>Close</a>
@@ -199,7 +166,7 @@ function App() {
                         {selectedTracking.atualizacoes.map((atualizacao, index) => (
                           <div key={index}>
                             <p>{atualizacao.descricao}</p>
-                              <p>{atualizacao.cidade} - {atualizacao.uf}</p>
+                            <p>{atualizacao.cidade} - {atualizacao.uf}</p>
                             <b><p>{new Date(atualizacao.data).toLocaleString()}</p></b>
                           </div>
                         ))}
@@ -212,13 +179,11 @@ function App() {
             )}
           </Authenticator>
         </div>
-        {/* front div */}
         {route !== 'authenticated' && <div className={styles.letterdown}></div>}
-        {/* front triangle */}
         {route !== 'authenticated' && <div className={styles.letterfront}></div>}
       </div>
     </div>
-  )
+  );
 }
 
 export default App;

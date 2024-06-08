@@ -1,6 +1,7 @@
 /* Body style */
 body {
-    background: var(--background-color);
+    background: var(--background-colorDrack);
+
     font-family: var(--font-family);
 }
 
@@ -113,3 +114,62 @@ body {
     border: 2px solid var(--primaryColor);
     color: var(--primaryColor);
   }
+
+  .boxDark {
+    width: 400px;
+    height: 320px;
+    border-radius: 10px;
+    background: blue;
+    padding: 5px;
+    display: grid;
+    grid-template-areas: 
+    'subtitulo'
+    'texto1'
+    'legenda1'
+    'texto2'
+    'legenda2'
+    'openBtn';
+  }
+
+  .boxDark p:nth-of-type(2) {
+    opacity: 0.5;
+    margin-left: 25px;
+    grid-area: texto2;
+  }
+
+
+  .boxDark p:nth-of-type(1) {
+    opacity: 0.5;
+    margin-left: 25px;
+    grid-area: texto1;
+  }
+  
+  .boxDark div:nth-of-type(1) {
+    grid-area: legenda1;
+    margin-left: 25px;
+  }
+  .boxDark div:nth-of-type(1) p {
+    margin-top: 0px;
+    margin-left: 5px;
+  }
+  .boxDark div:nth-of-type(2) {
+    grid-area: legenda2;
+    margin-left: 25px;
+  }
+  .boxDark div:nth-of-type(2) p {
+    margin-top: 0px;
+    margin-left: 5px;
+  }
+
+  .boxDark a {
+    color: blue;
+    text-decoration: none;
+    grid-area: openBtn;
+    margin-top: 25px;
+    margin-left: 25px;
+  }
+
+  
+  /* Componente Legenda */
+ 
+

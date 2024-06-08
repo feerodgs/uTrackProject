@@ -7,6 +7,41 @@
   @import './AppTemplate.css';
 
 
+  /* Estilos para o modo claro */
+
+/* Estilos gerais */
+.slider-container {
+  width: 64px;
+  height: 32px;
+  border: 2px solid currentColor;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.slider {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+
+.slide-left {
+  transform: translateX(0);
+}
+
+.slide-right {
+  transform: translateX(32px);
+}
+
 
 /* Código */
 .main {
