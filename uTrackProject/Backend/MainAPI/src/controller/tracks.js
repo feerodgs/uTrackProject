@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getTracks, getTrack, createTrack, deleteTrack, getUserTracks, FetchTrack } from '../services/track.js'
+import { getTracks, getTrack, createTrack, deleteTrack, getUserTracks } from '../services/track.js'
 
 const router = Router()
 
@@ -15,11 +15,6 @@ router.get("/:id", async (request, response) => {
     return response.status(200).send(track)
 })
 
-router.get("/fetch/:token_track", async (request, response) => {
-    const track = await FetchTrack(request.params.token_track)
-    return response.status(200).send(track)
-})
-
 // list all user tracks
 router.get("/:userId", async (request, response) => {
     const track = await getUserTracks(request.params.trackId)
@@ -29,9 +24,9 @@ router.get("/:userId", async (request, response) => {
 // new track
 router.post("/", async (request, response) => {
     const params = {
-        client: request.body.client,
-        token_track: request.body.token_track,
-        track_auth: request.body.track_auth
+        usuario: request.body.usuario,
+        codigoRastreio: request.body.codigoRastreio,
+        dataPrevisao: request.body.dataPrevisao
     }
     console.log(params)
     const track = await createTrack(params)

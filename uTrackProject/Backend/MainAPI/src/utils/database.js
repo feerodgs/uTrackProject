@@ -1,9 +1,19 @@
-// configs para conexão com o banco
+import mysql from 'mysql2/promise';
 
-function databaseConnection() {
-    for (let i = 1; i <= 1000; i++) {
+const connectionConfig = {
+    host: 'localhost',
+    user: 'root',
+    password: 'masterkey',
+    database: 'utrack'
+};
+
+export async function connectToDatabase () {
+    try {
+        const connection = await mysql.createConnection(connectionConfig);
+        console.log('Conexão com o banco de dados estabelecida com sucesso!');
+        return connection;
+    } catch (error) {
+        console.error('Erro ao conectar com o banco de dados:', error);
+        throw error;
     }
-    console.log("conectado com pg");
-  }
-  
-export { databaseConnection }; 
+};

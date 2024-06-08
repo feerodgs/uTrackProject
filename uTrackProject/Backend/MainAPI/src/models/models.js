@@ -1,24 +1,27 @@
 class User {
     constructor(params) {
-        const {nome, email} = params;
+        const { email } = params;
 
-        if (!nome || !email) {
+        if (!email) {
             throw new Error("Nome e email são obrigatórios.");
         }
-        this.nome = nome;
         this.email = email;
     }
 }
 
 class Track {
     constructor(params) {
-        const { client, token_track, track_auth } = params;
-        if (!client || !token_track || !track_auth) {
-            throw new Error("Client, token_track e track_auth são obrigatórios.");
+        const { usuario, codigoRastreio, dataPrevisao } = params;
+        if (!usuario) {
+            throw new Error("Usuario não encontrado.");
         }
-        this.client = client;
-        this.token_track = token_track;
-        this.track_auth = track_auth;
+        if (!!codigoRastreio) {
+            throw new Error("Código de rastreio não encontrado.");
+        }
+
+        this.usuario = usuario;
+        this.codigoRastreio = codigoRastreio;
+        this.dataPrevisao = dataPrevisao
     }
 }
 
