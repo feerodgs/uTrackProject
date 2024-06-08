@@ -1,0 +1,59 @@
+ /* Vari�veis */
+ @import '../variables.css';
+ /*  Template padrão de componentes */
+ @import '../AppTemplate.css';
+
+
+
+ .main {
+    max-width: 1800px;
+    height: 500px;
+    display: grid;
+    grid-template-areas: 'filter filter filter filter'
+    'section section section section';
+  }
+  .filterSection {
+    grid-area: filter;
+  }
+  .filter {
+    border: 3px solid var(--primaryColor);
+    padding: 2%;
+    display: flex;
+    gap: 20px;
+  }
+  .section {
+    margin-top: 25px;
+  }
+  
+  .trackBox {
+    background: var(--primaryColor);
+    width: 500px;
+    margin-top: 200px;
+    border-radius: 20px;
+    position: absolute;
+    right: 0px;
+  }
+  .trackBox div {
+    grid-template-columns: auto auto;
+  }
+  
+  .trackBox p {
+    color: var(--boxesColor);
+    margin-left: 25px;
+    grid-area: 1 / 2;
+  }
+  .trackBox a {
+    color: var(--boxesColor);
+    text-decoration: none;
+    margin-top: 25px;
+    margin-left: 25px;
+  }
+  .trackBox b {
+    color: var(--boxesColor);
+    margin-left: 25px;
+    grid-area: 1 / 1;
+  }
+  .container {
+    width: 100%;
+    width: 1000px;
+  }
