@@ -87,7 +87,7 @@ body {
     outline: none;
     border: none;
     border-bottom: 2px solid var(--primaryColor);
-    width: 200px;
+    width: 10%;
     height: 40px;
   }
   .submitBtn {
@@ -99,6 +99,7 @@ body {
     text-transform: uppercase;
     text-align: center;
     outline: none;
+    cursor: pointer;
   }
   .submitBtn:hover {
     background: none;

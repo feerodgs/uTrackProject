@@ -1,12 +1,12 @@
 import styles from './Home.module.css'
 import { useState } from 'react';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import Icon from './icons/Icon.jsx';
 import IconLarge from './icons/IconLarge.jsx';
 import IconBlack from './icons/IconBlack.jsx';
 
 const Home = () => {
-     // Exemplo de dados simulados (mockData)
      const mockData = [
         {
             codigoRastreio: "QQ830773725BR",
@@ -174,6 +174,7 @@ const Home = () => {
     const [selectedTracking, setSelectedTracking] = useState(null); // controla o rastreio selecionado
     const [showFilter, setShowFilter] = useState(false);
     const [showAddSection, setShowAddSection] = useState(false);
+    const { signOut } = useAuthenticator(context => [context.signOut]);
 
     const toggleFilter = () => {
         setShowFilter(!showFilter);
@@ -187,7 +188,10 @@ const Home = () => {
     return (
         <>
             <header className={styles.header}>
-                <img className={styles.logoHome} src="/logo.png" alt="Logotipo uTrack" />
+                <div>
+                    <img className={styles.logoHome} src="/logo.png" alt="Logotipo uTrack" />
+                    <button className={styles.submitBtn} onClick={signOut}>Sair</button>
+                </div>
                 <div>
                     <p>Utrack</p>
                     <a href=""><IconLarge name="lightMode"/></a>
@@ -250,24 +254,28 @@ const Home = () => {
                 {/* Div com o rastreio completo */}
                 {selectedTracking && (
                     <div className={styles.trackBox}>
-                        <div>
-                            <header>
-                                <h3 className={styles.subtitulo}>{selectedTracking.produto}</h3>
-                                <a href="#" onClick={() => setSelectedTracking(null)}><IconBlack name="close" /></a>
-                            </header>
-                            <p>Código de Rastreio: {selectedTracking.codigoRastreio}</p>
-                            <p>Previsão de Entrega: {selectedTracking.previsaoEntrega}</p>
+                    <div>
+                        <header>
+                            <h3 className={styles.subtitulo}>{selectedTracking.produto}</h3>
+                            <a href="#" onClick={() => setSelectedTracking(null)}><IconBlack name="close" /></a>
+                        </header>
+                        <p>Código de Rastreio: {selectedTracking.codigoRastreio}</p>
+                        <p>Previsão de Entrega: {selectedTracking.previsaoEntrega}</p>
+                        <div className={styles.timeline}>
                             {selectedTracking.atualizacoes.map((atualizacao, index) => (
-                                <div key={index}>
-                                    <tbody>
-                                        <th><p>{new Date(atualizacao.data).toLocaleString()}</p></th>
-                                        <th><p>t</p></th>
-                                        <th><p>{atualizacao.descricao}</p><p>{atualizacao.cidade} - {atualizacao.uf}</p></th>
-                                    </tbody>
+                                <div key={index} className={styles.timelineItem}>
+                                    <div className={styles.timelineDate}>
+                                        <p>{new Date(atualizacao.data).toLocaleString()}</p>
+                                    </div>
+                                    <div className={styles.timelineContent}>
+                                        <p>{atualizacao.descricao}</p>
+                                        <p>{atualizacao.cidade} - {atualizacao.uf}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
+                </div>
                 )}
             </main>
         </>
