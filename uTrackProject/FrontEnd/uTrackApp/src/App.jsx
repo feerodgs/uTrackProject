@@ -6,6 +6,8 @@ import { fetchAuthSession } from 'aws-amplify/auth';
 import { I18n } from 'aws-amplify/utils';
 import { translations } from '@aws-amplify/ui-react';
 
+import Home from './components/Home';
+
 I18n.putVocabularies(translations);
 I18n.setLanguage('pt');
 
@@ -35,67 +37,11 @@ const formFields = {
   }
 }
 
-// Exemplo de dados simulados (mockData)
-const mockData = [
-  {
-    codigoRastreio: "QQ830773725BR",
-    produto: "Produto A",
-    previsaoEntrega: "2024-03-22",
-    atualizacoes: [
-      {
-        data: "2024-03-20T12:08:19",
-        descricao: "Objeto entregue ao destinatário",
-        unidade: "Unidade de Distribuição",
-        cidade: "ERECHIM",
-        uf: "RS"
-      },
-      {
-        data: "2024-03-20T08:52:12",
-        descricao: "Objeto saiu para entrega ao destinatário",
-        unidade: "Unidade de Distribuição",
-        cidade: "ERECHIM",
-        uf: "RS"
-      },
-      {
-        data: "2024-03-15T14:05:12",
-        descricao: "Objeto em transferência - por favor aguarde",
-        unidade: "Unidade de Tratamento",
-        cidade: "PASSO FUNDO",
-        uf: "RS"
-      },
-      {
-        data: "2024-03-14T03:30:28",
-        descricao: "Objeto em transferência - por favor aguarde",
-        unidade: "Unidade de Tratamento",
-        cidade: "CAJAMAR",
-        uf: "SP"
-      },
-      {
-        data: "2024-03-13T00:03:58",
-        descricao: "Objeto em transferência - por favor aguarde",
-        unidade: "Agência dos Correios",
-        cidade: "SANTO ANDRE",
-        uf: "SP"
-      },
-      {
-        data: "2024-03-12T20:07:50",
-        descricao: "Objeto postado após o horário limite da unidade",
-        unidade: "Agência dos Correios",
-        cidade: "SANTO ANDRE",
-        uf: "SP"
-      }
-    ]
-  }
-  // Adicione mais rastreios conforme necessário
-];
-
 function App() {
   const { route } = useAuthenticator(context => [context.route]);
   const [accessToken, setAccessToken] = useState(null);
   const [idToken, setIdToken] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [encomendas, setEncomendas] = useState(mockData); // Usei estado para armazenar as encomendas, OBS: retirar o mockData com a APi funcionando
-  const [selectedTracking, setSelectedTracking] = useState(null); // controla o rastreio selecionado
 
   useEffect(() => {
     const currentSession = async () => {
@@ -139,7 +85,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />
+      {route !== 'authenticated' &&<img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />}
       <div className={styles.letter}>
         {/* back triangle */}
         {route !== 'authenticated' && <div className={styles.lettertop}></div>}
@@ -149,65 +95,8 @@ function App() {
           <Authenticator formFields={formFields}>
             {({ signOut, user }) => (
               <div className={styles.container}>
-                <main className={styles.main}>
-                  <div className={styles.filterSection}>
-                    <div className={styles.filterHeader}>
-                      <a href="#" className={styles.filterBtn}><i>A</i> Filtros</a>
-                      <a href="#" className={styles.filterBtn}><i>A</i> Adicionar</a>
-                    </div>
-                    <div className={styles.filter}>
-                      <label htmlFor="produto" className={styles.label}>Produto</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='produto'/>
-                      <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='codRastreio'/>
-                      <label htmlFor="staus" className={styles.label}>Status</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='status'/>
-                      <label htmlFor="deDat" className={styles.label}>De</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='deDat'/>
-                      <label htmlFor="ateDat" className={styles.label}>Até</label>
-                      <input type="text" className={styles.textInput} placeholder='texto' id='ateDat'/>
-                      <input type="text" className={styles.submitBtn} value="Pesquisar"/>
-                    </div>
-                  </div>
-                  {/* gerador dos blocos */}
-                  <div className={styles.section}>
-                    {encomendas.map((encomenda, index) => (
-                      <div className={styles.box} key={index}>
-                        <h3 className={styles.subtitulo}>{encomenda.produto}</h3>
-                        <p>Código de Rastreio:</p>
-                        <div className={styles.legenda}>
-                          <p>{encomenda.codigoRastreio}</p>
-                        </div>
-                        <p>Previsão de Entrega:</p>
-                        <div className={styles.legenda}>
-                          <p>{encomenda.previsaoEntrega}</p>
-                        </div>
-                        <a href="#" onClick={() => setSelectedTracking(encomenda)}>Ver mais</a>
-                        <br/><br />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Div com o rastreio completo */}
-                  {selectedTracking && (
-                    <div className={styles.trackBox}>
-                      <div>
-                        <h3 className={styles.subtitulo}>{selectedTracking.produto}</h3>
-                        <a href="#" onClick={() => setSelectedTracking(null)}>Close</a>
-                        <p>Código de Rastreio: {selectedTracking.codigoRastreio}</p>
-                        <p>Previsão de Entrega: {selectedTracking.previsaoEntrega}</p>
-                        {selectedTracking.atualizacoes.map((atualizacao, index) => (
-                          <div key={index}>
-                            <p>{atualizacao.descricao}</p>
-                              <p>{atualizacao.cidade} - {atualizacao.uf}</p>
-                            <b><p>{new Date(atualizacao.data).toLocaleString()}</p></b>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </main>
-                <button onClick={signOut}>Sair</button>
+                <Home />
+                <button onClick={signOut}>Meter o pé</button>
               </div>
             )}
           </Authenticator>

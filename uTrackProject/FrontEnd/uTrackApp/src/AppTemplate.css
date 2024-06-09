@@ -82,21 +82,13 @@ body {
     text-transform: uppercase;
   }
   .textInput {
+    color: var(--boxesColor);
     background: none;
     outline: none;
     border: none;
     border-bottom: 2px solid var(--primaryColor);
     width: 200px;
-  }
-  .filterBtn {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-left: 5px;
-    border-left: 1px solid black;
-  }
-  .filterBtn i {
-    margin-left: 5px;
+    height: 40px;
   }
   .submitBtn {
     background: var(--primaryColor);
