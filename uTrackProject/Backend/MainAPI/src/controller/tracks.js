@@ -23,15 +23,22 @@ router.get("/:userId", async (request, response) => {
 
 // new track
 router.post("/", async (request, response) => {
+    console.log('Dados recebidos na requisição:', request.body);
+
     const params = {
         usuario: request.body.usuario,
         codigoRastreio: request.body.codigoRastreio,
         dataPrevisao: request.body.dataPrevisao
+    };
+
+    try {
+        const track = await createTrack(params);
+        return response.status(201).send(track);
+    } catch (error) {
+        console.error('Erro ao criar track:', error.message);
+        return response.status(500).send({ erro: error.message });
     }
-    console.log(params)
-    const track = await createTrack(params)
-    return response.status(201).send(track)
-})
+});
 
 // delete track
 router.delete("/:id", async (request, response) => {

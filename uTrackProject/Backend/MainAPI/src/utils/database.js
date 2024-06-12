@@ -10,7 +10,7 @@ const connectionConfig = {
 export async function connectToDatabase () {
     try {
         const connection = await mysql.createConnection(connectionConfig);
-        console.log('Conexão com o banco de dados estabelecida com sucesso!');
+        console.log('Conexão com o banco de dados estabelecida com sucesso! 1');
         return connection;
     } catch (error) {
         console.error('Erro ao conectar com o banco de dados:', error);
