@@ -2,6 +2,8 @@ import pkg from 'typescript';
 const { resolveModuleName } = pkg;
 
 import models from '../models/models.js';
+import { connectToDatabase } from '../utils/database.js';
+
 
 const Track = models.Track;
 
@@ -33,22 +35,49 @@ async function fetchTrack(id) {
     }
 }
 
+const isValidCodigoRastreio = (codigoRastreio) => {
+    // Exemplo de validação: ajustar conforme necessário
+    return typeof codigoRastreio === 'string' && codigoRastreio.length > 0;
+};
+
 const sendTrackParams = async (track) => {
     // POST e mandar o codigo da encomenda
-    // armazenar o codigo do usuario e do rastreio no banco // a fazer
-    // return fetchTrack passando id
+    // Salvar a nova track no Banco de Dados
 
-    return fetchTrack(track.codigoRastreio)
-}
+    if (!isValidCodigoRastreio(track.codigoRastreio)) {
+        throw new Error('Código de rastreamento inválido');
+    }
+
+    // Conectar ao banco de dados
+    const connection = await connectToDatabase();
+    //console.log(connection);
+
+    // Inserir os dados da track no banco de dados
+    const query = 'INSERT INTO TRACK (DATAP_REVISAO, CODIGO_RASTREIO, CODIGO_USUARIO) VALUES (?, ?, ?)';
+    await connection.execute(query, [track.dataPrevisao, track.codigoRastreio, track.usuario]);
+
+    console.log(query);
+    // console.log(connection);
+
+    console.log(track);
+
+    // Fechar a conexão
+    await connection.end();
+
+    // Buscar os detalhes do rastreio
+    return fetchTrack(track.codigoRastreio);
+};
+
 
 export const createTrack = async (params) => {
-    const track = new Track({
-        usuario: params.usuario,
-        codigoRastreio: params.codigoRastreio,
-        dataPrevisao: params.dataPrevisao
-    })
-    return sendTrackParams(track)
-}
+    const track = new Track(params);
+
+    if (!isValidCodigoRastreio(track.codigoRastreio)) {
+        throw new Error('Código de rastreamento inválido');
+    }
+
+    return sendTrackParams(track);
+};
 
 export const deleteTrack = async (id) => {
     // await DeletarTrackPipipiPopopo
