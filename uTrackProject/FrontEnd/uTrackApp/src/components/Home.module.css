@@ -1,0 +1,183 @@
+ /* Vari�veis */
+ @import '../variables.css';
+ /*  Template padrão de componentes */
+ @import '../AppTemplate.css';
+
+
+
+ .header {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  justify-content: space-between;
+  margin-top: -50px;
+ }
+ .logoHome {
+  width: 80px;
+ }
+ .header div {
+  align-items: center;
+  gap: 50px;
+  display: flex;
+ }
+ .header p {
+  color: var(--boxesColor);
+  text-transform: uppercase;
+  font-size: 30px;
+ }
+ .header a {
+  color: var(--boxesColor);
+ }
+ .main {
+    max-width: 1800px;
+    height: 500px;
+    display: grid;
+    grid-template-areas: 'filter filter filter filter'
+    'section section section section';
+  }
+  .filterSection {
+    grid-area: filter;
+    position: relative; /* Define a posição relativa para a seção pai */
+  }
+
+  .filterHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-bottom: solid 1px black;
+  }
+  .filterBtn {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    border-left: 1px solid black;
+    cursor: pointer;
+  }
+
+  .filter, .addSection {
+    border: 3px solid var(--primaryColor);
+    padding: 2%;
+    display: flex;
+    gap: 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  .addSection {
+    margin-top: -75px;
+  }
+  
+  .filter.show, .addSection.show {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+  }
+
+
+
+
+  .section {
+    margin-top: 25px;
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: auto auto auto auto;
+  }
+
+
+
+  
+  .trackBox {
+    background: var(--primaryColor);
+    width: 500px;
+    max-height: 676px;
+    margin-top: 180px;
+    border-radius: 20px;
+    position: absolute;
+    right: 0px;
+    overflow-x: auto;
+  }
+  .trackBox::-webkit-scrollbar {
+    width: 5px;
+  }
+  .trackBox::-webkit-scrollbar-track {
+    background: none;
+  }
+  .trackBox::-webkit-scrollbar-thumb {
+    background-color: var(--boxesColor);
+    border-radius: 20px;
+  }
+  .trackBox header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .trackBox header a {
+    margin-right: 25px;
+  }
+  
+  .trackBox p {
+    color: var(--boxesColor);
+    margin-left: 25px;
+    grid-area: 1 / 2;
+  }
+  .trackBox a {
+    color: var(--boxesColor);
+    text-decoration: none;
+    margin-top: 25px;
+    margin-left: 25px;
+  }
+  .timeline {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .timelineItem {
+      display: flex;
+      margin-bottom: 20px;
+  }
+  .timelineDate {
+      width: 30%;
+      text-align: right;
+      padding-right: 20px;
+  }
+  .timelineContent {
+      width: 70%;
+      padding-left: 20px;
+      border-left: 3px solid var(--boxesColor);
+  }
+  .timelineContent p {
+      margin: 0;
+      padding: 5px 0;
+  }
+  .container {
+    width: 100%;
+    width: 1000px;
+  }
+
+
+@media screen and (max-width: 550px){
+  .main {
+    width: 550px;
+  }
+  .filterSection {
+    width: 550px;
+  }
+  .section {
+    grid-template-columns: auto;
+  }
+  .trackBox {
+    background: var(--primaryColor);
+    width: 500px;
+    max-height: 676px;
+    margin-top: 180px;
+    border-radius: 20px;
+    position: absolute;
+  }
+}
