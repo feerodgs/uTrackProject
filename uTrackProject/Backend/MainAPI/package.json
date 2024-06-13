@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/feerodgs/uTrackProject#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql2": "^3.10.0",
     "typescript": "^5.4.5"
