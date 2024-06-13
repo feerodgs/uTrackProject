@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getUsers, getUser, createUser, deleteUser } from '../services/user.js'
+import { getUsers, createUser } from '../services/user.js'
 
 const router = Router()
 
@@ -11,7 +11,7 @@ router.get("/", async (request, response) => {
 
 // list an user by id
 router.get("/:id", async (request, response) => {
-    const user = await getUser(request.params.id)
+    const user = await getUser(request.params.email)
     return response.status(200).send(user)
 })
 
@@ -24,7 +24,6 @@ router.post("/", async (request, response) => {
     return response.status(201).send(user)
 })
 
-// delete user (vou fazer com cognito)
 router.delete("/:id", async (request, response) => {
     await deleteUser(request.params.id)
     

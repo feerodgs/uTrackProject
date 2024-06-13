@@ -4,8 +4,8 @@ import { getTracks, getTrack, createTrack, deleteTrack, getUserTracks } from '..
 const router = Router()
 
 // health check endpoint
-router.get("/", async (request, response) => {
-    const tracks = await getTracks()
+router.get("/tracks/:id", async (request, response) => {
+    const tracks = await getTracks(request.params.id)
     return response.status(200).send(tracks)
 })
 
@@ -24,12 +24,11 @@ router.get("/:userId", async (request, response) => {
 
 // new track
 router.post("/", async (request, response) => {
-    console.log('Dados recebidos na requisição:', request.body);
-
     const params = {
-        usuario: request.body.usuario,
+        codigoUsuario: request.body.codigoUsuario,
         codigoRastreio: request.body.codigoRastreio,
-        dataPrevisao: request.body.dataPrevisao
+        dataPrevisao: request.body.dataPrevisao,
+        nomeProduto: request.body.nomeProduto
     };
 
     try {
@@ -46,6 +45,5 @@ router.delete("/:id", async (request, response) => {
     await deleteTrack(request.params.id)
     return response.status(204).send()
 })
-
 
 export default router

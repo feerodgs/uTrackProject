@@ -4,13 +4,29 @@ const { resolveModuleName } = pkg;
 import models from '../models/models.js';
 import { connectToDatabase } from '../utils/database.js';
 
-
 const Track = models.Track;
 
-export const getTracks = async () => {
-    // Todas as encomendas de um usuario
-    return "Seus rastreios";
-}
+export const getTracks = async (codigoUsuario) => {
+    const connection = await connectToDatabase();
+
+    try {
+        const query = `SELECT NOME_PRODUTO, DATA_PREVISAO, CODIGO_RASTREIO, CODIGO_USUARIO FROM TRACK WHERE CODIGO_USUARIO = ?`;
+        const [rows] = await connection.execute(query, [codigoUsuario]);
+        await connection.end();
+
+        const retorno = rows.map(row => ({
+            NOME_PRODUTO: row.NOME_PRODUTO,
+            DATA_PREVISAO: row.DATA_PREVISAO,
+            CODIGO_RASTREIO: row.CODIGO_RASTREIO,
+            CODIGO_USUARIO: row.CODIGO_USUARIO,
+        }));
+
+        return retorno;
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+        return { status: 'error', message: 'Erro ao buscar dados', details: error.message };
+    }
+};
 
 export const getTrack = async (id) => {
     try {
@@ -35,58 +51,22 @@ async function fetchTrack(id) {
     }
 }
 
-const isValidCodigoRastreio = (codigoRastreio) => {
-    // Exemplo de validação: ajustar conforme necessário
-    return typeof codigoRastreio === 'string' && codigoRastreio.length > 0;
-};
-
-const sendTrackParams = async (track) => {
-    // POST e mandar o codigo da encomenda
-    // Salvar a nova track no Banco de Dados
-
-    if (!isValidCodigoRastreio(track.codigoRastreio)) {
-        throw new Error('Código de rastreamento inválido');
-    }
-
-    // Conectar ao banco de dados
-    const connection = await connectToDatabase();
-    //console.log(connection);
-
-    // Inserir os dados da track no banco de dados
-    const query = 'INSERT INTO TRACK (DATAP_REVISAO, CODIGO_RASTREIO, CODIGO_USUARIO) VALUES (?, ?, ?)';
-    await connection.execute(query, [track.dataPrevisao, track.codigoRastreio, track.usuario]);
-
-    console.log(query);
-    // console.log(connection);
-
-    console.log(track);
-
-    // Fechar a conexão
-    await connection.end();
-
-    // Buscar os detalhes do rastreio
-    return fetchTrack(track.codigoRastreio);
-};
-
-
 export const createTrack = async (params) => {
     const track = new Track(params);
-
-    if (!isValidCodigoRastreio(track.codigoRastreio)) {
-        throw new Error('Código de rastreamento inválido');
-    }
-
     return sendTrackParams(track);
 };
 
 export const deleteTrack = async (id) => {
-    // await DeletarTrackPipipiPopopo
-    console.log("Track deletado")
+    const connection = await connectToDatabase();
+    await connection.execute(`DELETE FROM TRACK WHERE ID = ${id};`);
+    await connection.end();
     return 'Track deletado'
 }
 
-export const getUserTracks = (userId) => {
-    //pega query para pegar todas as tracks do user
-
-    return "Todas as tracks do user"
-}
+const sendTrackParams = async (track) => {
+    const connection = await connectToDatabase();
+    const query = 'INSERT INTO TRACK (NOME_PRODUTO, DATA_PREVISAO, CODIGO_RASTREIO, CODIGO_USUARIO)  VALUES (?, ?, ?, ?)';
+    await connection.execute(query, [track.nomeProduto, track.dataPrevisao, track.codigoRastreio, track.codigoUsuario]);
+    await connection.end();
+    return fetchTrack(track.codigoRastreio);
+};

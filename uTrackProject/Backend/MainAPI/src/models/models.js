@@ -24,7 +24,6 @@ class Track {
         if (!codigoUsuario) {
             throw new Error("Usuario não encontrado."); x
         }
-        
         this.codigoUsuario = codigoUsuario;
         this.codigoRastreio = codigoRastreio;
         this.dataPrevisao = dataPrevisao;
