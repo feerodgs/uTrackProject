@@ -65,24 +65,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Busca os dados da API
-  // Para funcionar a busca pela API quem for ajustar descomente o código abaixo, como será repassado a APi ainda tem que ser ajustado para coletar corretamente algumas informações como o nome do produto...
-  /*
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://www.cepcerto.com/ws/encomenda-json/QQ830773725BR/45eae6254b24ec6f27ab9ded556b9b538223939f/'); // NOTA ver com felipa se vão passar o ID do cliente e adicionar neste link
-        const data = await response.json();
-        setEncomendas(data); // Ajuste a estrutura dos dados conforme necessário
-      } catch (error) {
-        console.log('Erro ao buscar dados de rastreamento:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  */
-
   return (
     <div className={styles.App}>
       {route !== 'authenticated' &&<img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />}
