@@ -11,21 +11,24 @@ class User {
 
 class Track {
     constructor(params) {
-        const { usuario, codigoRastreio, dataPrevisao } = params;
-        if (!usuario) {
-            throw new Error("Usuario não encontrado.");
+        const { nomeProduto, dataPrevisao, codigoRastreio, codigoUsuario } = params;
+
+        if (!nomeProduto) {
+            throw new Error("Nome do Produto não Informado.");
         }
+
         if (!codigoRastreio) {
             throw new Error("Código de rastreio não encontrado.");
         }
-        // if (!nomeProduto) {
-        //     throw new Error("Nome do Produto não Informado.");
-        // }
 
-        this.usuario = usuario;
+        if (!codigoUsuario) {
+            throw new Error("Usuario não encontrado."); x
+        }
+        
+        this.codigoUsuario = codigoUsuario;
         this.codigoRastreio = codigoRastreio;
         this.dataPrevisao = dataPrevisao;
-        // this.nomeProduto = nomeProduto;
+        this.nomeProduto = nomeProduto;
     }
 }
 
