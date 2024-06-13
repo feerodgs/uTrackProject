@@ -6,171 +6,11 @@ import Icon from './icons/Icon.jsx';
 import IconLarge from './icons/IconLarge.jsx';
 import IconBlack from './icons/IconBlack.jsx';
 
+import useFetchTracks from '../server.jsx';
+
 const Home = () => {
-     const mockData = [
-        {
-            codigoRastreio: "QQ830773725BR",
-            produto: "Produto A",
-            previsaoEntrega: "2024-03-22",
-            atualizacoes: [
-                {
-                    data: "2024-03-20T12:08:19",
-                    descricao: "Objeto entregue ao destinatário",
-                    unidade: "Unidade de Distribuição",
-                    cidade: "ERECHIM",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-03-20T08:52:12",
-                    descricao: "Objeto saiu para entrega ao destinatário",
-                    unidade: "Unidade de Distribuição",
-                    cidade: "ERECHIM",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-03-15T14:05:12",
-                    descricao: "Objeto em transferência - por favor aguarde",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "PASSO FUNDO",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-03-14T03:30:28",
-                    descricao: "Objeto em transferência - por favor aguarde",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "CAJAMAR",
-                    uf: "SP"
-                },
-                {
-                    data: "2024-03-13T00:03:58",
-                    descricao: "Objeto em transferência - por favor aguarde",
-                    unidade: "Agência dos Correios",
-                    cidade: "SANTO ANDRE",
-                    uf: "SP"
-                },
-                {
-                    data: "2024-03-12T20:07:50",
-                    descricao: "Objeto postado após o horário limite da unidade",
-                    unidade: "Agência dos Correios",
-                    cidade: "SANTO ANDRE",
-                    uf: "SP"
-                }
-            ]
-        },
-        {
-            codigoRastreio: "AA123456789BR",
-            produto: "Produto B",
-            previsaoEntrega: "2024-04-10",
-            atualizacoes: [
-                {
-                    data: "2024-04-08T15:30:00",
-                    descricao: "Objeto em transferência",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "PORTO ALEGRE",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-06T12:45:30",
-                    descricao: "Objeto encaminhado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-05T09:20:15",
-                    descricao: "Objeto postado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                }
-            ]
-        },
-        {
-            codigoRastreio: "AA123456789BG",
-            produto: "Produto C",
-            previsaoEntrega: "2024-04-12",
-            atualizacoes: [
-                {
-                    data: "2024-04-08T15:30:00",
-                    descricao: "Objeto em transferência",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "PORTO ALEGRE",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-06T12:45:30",
-                    descricao: "Objeto encaminhado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-05T09:20:15",
-                    descricao: "Objeto postado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                }
-            ]
-        },
-        {
-            codigoRastreio: "AA123456789BH",
-            produto: "Produto D",
-            previsaoEntrega: "2024-04-10",
-            atualizacoes: [
-                {
-                    data: "2024-04-08T15:30:00",
-                    descricao: "Objeto em transferência",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "PORTO ALEGRE",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-06T12:45:30",
-                    descricao: "Objeto encaminhado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-05T09:20:15",
-                    descricao: "Objeto postado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                }
-            ]
-        },
-        {
-            codigoRastreio: "AA123456789BA",
-            produto: "Produto E",
-            previsaoEntrega: "2024-04-10",
-            atualizacoes: [
-                {
-                    data: "2024-04-08T15:30:00",
-                    descricao: "Objeto em transferência",
-                    unidade: "Unidade de Tratamento",
-                    cidade: "PORTO ALEGRE",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-06T12:45:30",
-                    descricao: "Objeto encaminhado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                },
-                {
-                    data: "2024-04-05T09:20:15",
-                    descricao: "Objeto postado",
-                    unidade: "Agência dos Correios",
-                    cidade: "CAXIAS DO SUL",
-                    uf: "RS"
-                }
-            ]
-        }
-    ];
-    const [encomendas, setEncomendas] = useState(mockData); // Usei estado para armazenar as encomendas, OBS: retirar o mockData com a APi funcionando
+    const codRastreio = 'QQ830773725BR';
+    const { encomendas, error, loading } = useFetchTracks(codRastreio);
     const [selectedTracking, setSelectedTracking] = useState(null); // controla o rastreio selecionado
     const [showFilter, setShowFilter] = useState(false);
     const [showAddSection, setShowAddSection] = useState(false);
@@ -184,6 +24,14 @@ const Home = () => {
         setShowAddSection(!showAddSection);
         setShowFilter(false);
     };
+
+    if (loading) {
+        return <p>Carregando...</p>;
+    }
+
+    if (error) {
+        return <p>Erro: {error.message}</p>;
+    }
 
     return (
         <>
@@ -229,14 +77,14 @@ const Home = () => {
                         <input type="text" className={styles.textInput} placeholder='geladeira' id='produto' />
                         <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
                         <input type="text" className={styles.textInput} placeholder='texto' id='codRastreio' />
-                        <input type="button" className={styles.submitBtn} value="Adicionar" />
+                            <input type="button" className={styles.submitBtn} value="Adicionar" />
                     </div>
                 </div>
                 {/* gerador dos blocos */}
                 <div className={styles.section}>
                     {encomendas.map((encomenda, index) => (
                         <div className={styles.box} key={index}>
-                            <h3 className={styles.subtitulo}>{encomenda.produto}</h3>
+                            <h3 className={styles.subtitulo}>{encomenda.descricao}</h3>
                             <p>Código de Rastreio:</p>
                             <div className={styles.legenda}>
                                 <p>{encomenda.codigoRastreio}</p>
@@ -249,7 +97,7 @@ const Home = () => {
                             <br /><br />
                         </div>
                     ))}
-                </div>
+                </div>  
 
                 {/* Div com o rastreio completo */}
                 {selectedTracking && (
