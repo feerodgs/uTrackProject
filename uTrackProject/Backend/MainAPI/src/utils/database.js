@@ -2,10 +2,17 @@ import mysql from 'mysql2/promise';
 
 const connectionConfig = {
     host: 'localhost',
-    user: 'root',
+    user: 'test',
     password: 'masterkey',
     database: 'utrack'
 };
+
+// const connectionConfig = {
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'masterkey',
+//     database: 'utrack'
+// };
 
 export async function connectToDatabase () {
     try {

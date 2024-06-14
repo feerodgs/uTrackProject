@@ -1,17 +1,17 @@
-CREATE DATABASE UTRACK;
+create database utrack;
 
-USE UTRACK;
+use utrack;
 
-CREATE TABLE USUARIO (
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    EMAIL VARCHAR(255) NOT NULL
+create table usuario (
+    id integer auto_increment primary key,
+    email varchar(255) not null
 );
 
-CREATE TABLE TRACK (
-    ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    NOME_PRODUTO VARCHAR(255),
-    DATA_PREVISAO DATE, 
-    CODIGO_RASTREIO VARCHAR(255) NOT NULL,
-    CODIGO_USUARIO INTEGER NOT NULL,
-    FOREIGN KEY (CODIGO_USUARIO) REFERENCES USUARIO(ID)
+create table track (
+    id integer auto_increment primary key,
+    nome_produto varchar(255),
+    data_previsao date, 
+    codigo_rastreio varchar(255) not null,
+    codigo_usuario integer not null,
+    foreign key (codigo_usuario) references usuario(id)
 );
