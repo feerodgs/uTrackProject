@@ -77,7 +77,7 @@ function App() {
           <Authenticator formFields={formFields}>
             {({ signOut, user }) => (
               <div className={styles.container}>
-                <Home signOut={signOut}/>
+                <Home signOut={signOut} user={user} />
               </div>
             )}
           </Authenticator>
