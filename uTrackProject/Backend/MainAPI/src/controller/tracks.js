@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getTracks, getTrack, createTrack, deleteTrack, getUserTracks } from '../services/track.js'
+import { getTracks, getTrack, createTrack, deleteTrack } from '../services/track.js'
 
 const router = Router()
 
