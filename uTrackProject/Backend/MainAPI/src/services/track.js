@@ -10,23 +10,28 @@ export const getTracks = async (codigoUsuario) => {
     const connection = await connectToDatabase();
 
     try {
-        const query = `SELECT NOME_PRODUTO, DATA_PREVISAO, CODIGO_RASTREIO, CODIGO_USUARIO FROM TRACK WHERE CODIGO_USUARIO = ?`;
+        const query = `SELECT T.ID, T.NOME_PRODUTO, T.DATA_PREVISAO, T.CODIGO_RASTREIO, T.CODIGO_USUARIO FROM track T INNER JOIN usuario U ON T.CODIGO_USUARIO = U.ID WHERE U.EMAIL = '${codigoUsuario}';`;
         const [rows] = await connection.execute(query, [codigoUsuario]);
         await connection.end();
 
-        const retorno = rows.map(row => ({
-            NOME_PRODUTO: row.NOME_PRODUTO,
-            DATA_PREVISAO: row.DATA_PREVISAO,
-            CODIGO_RASTREIO: row.CODIGO_RASTREIO,
-            CODIGO_USUARIO: row.CODIGO_USUARIO,
-        }));
+        // Obtendo os códigos de rastreio
+        const codigosRastreio = rows.map(row => row.CODIGO_RASTREIO);
 
-        return retorno;
+        // Obtendo os movimentos para cada código de rastreio
+        const movimentosPromises = codigosRastreio.map(codigoRastreio => getTrack(codigoRastreio));
+        const movimentos = await Promise.all(movimentosPromises);
+
+        rows.forEach((row, index) => {
+            row.MOVIMENTOS = movimentos[index];
+        });
+
+        return rows;
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
         return { status: 'error', message: 'Erro ao buscar dados', details: error.message };
     }
 };
+
 
 export const getTrack = async (id) => {
     try {
@@ -38,13 +43,17 @@ export const getTrack = async (id) => {
 
 async function fetchTrack(id) {
     try {
+        console.log(id);
         let response = await fetch(`https://www.cepcerto.com/ws/encomenda-json/${id}/45eae6254b24ec6f27ab9ded556b9b538223939f/`);
-
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        return await response.json();
+        const data = await response.json(); // Aguardar o processamento do corpo JSON
+        console.log(data);
+
+        return data;
     } catch (error) {
         console.error('Erro ao buscar dados:', error);
         throw error;
@@ -58,15 +67,40 @@ export const createTrack = async (params) => {
 
 export const deleteTrack = async (id) => {
     const connection = await connectToDatabase();
-    await connection.execute(`DELETE FROM TRACK WHERE ID = ${id};`);
+    await connection.execute(`DELETE FROM track WHERE ID = ${id};`);
     await connection.end();
     return 'Track deletado'
 }
 
 const sendTrackParams = async (track) => {
+    
+    const { nomeProduto, dataPrevisao, codigoRastreio, codigoUsuario } = track;
+
+    if (!nomeProduto || !dataPrevisao || !codigoRastreio || !codigoUsuario) {
+        throw new Error('Um ou mais parametros estao indefinidos.');
+    }
+
     const connection = await connectToDatabase();
-    const query = 'INSERT INTO TRACK (NOME_PRODUTO, DATA_PREVISAO, CODIGO_RASTREIO, CODIGO_USUARIO)  VALUES (?, ?, ?, ?)';
-    await connection.execute(query, [track.nomeProduto, track.dataPrevisao, track.codigoRastreio, track.codigoUsuario]);
+    const query = 'INSERT INTO track (nome_produto, data_previsao, codigo_rastreio, codigo_usuario) SELECT ?, ?, ?, U.id FROM usuario U WHERE U.email = ?';
+
+    const [rows] = await connection.execute(query, [nomeProduto, dataPrevisao, codigoRastreio, codigoUsuario]);
     await connection.end();
-    return fetchTrack(track.codigoRastreio);
+    
+    // Fetch track movements for the single codigoRastreio
+    const movimentos = await getTrack(codigoRastreio);
+    const numeroAleatorio = Math.floor(Math.random() * (251 - 100)) + 100;
+    
+    // Create the expected result object
+    const result = {
+        ID: numeroAleatorio,
+        NOME_PRODUTO: nomeProduto,
+        DATA_PREVISAO: dataPrevisao,
+        CODIGO_RASTREIO: codigoRastreio,
+        CODIGO_USUARIO: codigoUsuario,
+        MOVIMENTOS: movimentos
+    };
+
+    return result;
 };
+
+

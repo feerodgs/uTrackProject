@@ -71,7 +71,7 @@
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   }
   .addSection {
-    margin-top: -75px;
+    margin-top: -45px;
   }
   
   .filter.show, .addSection.show {
@@ -80,9 +80,6 @@
     transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
   }
 
-
-
-
   .section {
     margin-top: 25px;
     display: grid;
@@ -90,7 +87,17 @@
     grid-template-columns: auto auto auto auto;
   }
 
+  .deleteBtn {
+    width: 10%;
+    margin-left: 7%;
+    cursor: pointer;
+  }
 
+  .movimentos {
+    background-color: var(--secondaryColor);
+    position: absolute;
+    top: 100%;
+  }
 
   
   .trackBox {
@@ -161,6 +168,10 @@
     width: 1000px;
   }
 
+
+  .box {
+    height: 350px;
+  }
 
 @media screen and (max-width: 550px){
   .main {

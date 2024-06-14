@@ -4,7 +4,8 @@ const connectionConfig = {
     host: 'localhost',
     user: 'test',
     password: 'masterkey',
-    database: 'utrack'
+    database: 'utrack',
+    connectTimeout: 900000000
 };
 
 // const connectionConfig = {
