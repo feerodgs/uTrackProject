@@ -73,6 +73,13 @@
   .addSection {
     margin-top: -45px;
   }
+  .addSection form {
+    display: flex;
+    gap: 30px;
+  }
+  .addSection form input {
+    width: 50%;
+  }
   
   .filter.show, .addSection.show {
     max-height: 500px;
@@ -92,23 +99,17 @@
     margin-left: 7%;
     cursor: pointer;
   }
-
-  .movimentos {
-    background-color: var(--secondaryColor);
-    position: absolute;
-    top: 100%;
-  }
-
   
   .trackBox {
     background: var(--primaryColor);
     width: 500px;
     max-height: 676px;
-    margin-top: 180px;
+    margin-top: 0px;
     border-radius: 20px;
     position: absolute;
-    right: 0px;
+    left: 500px;
     overflow-x: auto;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.6);
   }
   .trackBox::-webkit-scrollbar {
     width: 5px;
@@ -124,11 +125,13 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    margin-left: 25px;
+    margin-right: 25px;
   }
   .trackBox header a {
     margin-right: 25px;
   }
-  
+ 
   .trackBox p {
     color: var(--boxesColor);
     margin-left: 25px;
@@ -150,12 +153,12 @@
       margin-bottom: 20px;
   }
   .timelineDate {
-      width: 30%;
+      width: 40%;
       text-align: right;
       padding-right: 20px;
   }
   .timelineContent {
-      width: 70%;
+      width: 60%;
       padding-left: 20px;
       border-left: 3px solid var(--boxesColor);
   }
@@ -171,6 +174,11 @@
 
   .box {
     height: 350px;
+  }
+
+  .carregando {
+    color: var(--boxesColor);
+
   }
 
 @media screen and (max-width: 550px){

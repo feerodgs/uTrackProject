@@ -12,7 +12,8 @@ const connectionConfig = {
 //     host: 'localhost',
 //     user: 'root',
 //     password: 'masterkey',
-//     database: 'utrack'
+//     database: 'utrack',
+//     connectTimeout: 900000000
 // };
 
 export async function connectToDatabase () {
