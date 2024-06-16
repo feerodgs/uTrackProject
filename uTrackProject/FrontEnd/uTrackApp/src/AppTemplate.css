@@ -1,13 +1,23 @@
 /* Body style */
 body {
-    background: var(--background-color);
+    background-color: rgb(52,52,52);
+    background-color: linear-gradient(142deg, rgba(52,52,52,1) 0%, rgba(65,65,65,1) 49%, rgba(44,44,44,1) 100%);
+
+    background-image: url('/backgroundLogo.png');
+    background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    position: relative;
     font-family: var(--font-family);
 }
+
+
 
 /* Basic Components */
   /* Componente bloco rastreios*/
   .box {
-    width: 400px;
+    width: 350px;
     height: 320px;
     border-radius: 10px;
     background: var(--boxesColor);
@@ -64,7 +74,7 @@ body {
   /* Componente Legenda */
   .legenda {
     background: #FCFCFC;
-    width: 247px;
+    width: 80%;
     height: 40px;
     border-radius: 10px;
     font-size: 24px;
@@ -87,14 +97,18 @@ body {
     outline: none;
     border: none;
     border-bottom: 2px solid var(--boxesColor);
-    width: 15%;
+    width: 15vw;
     height: 40px;
+  }
+  .textInput::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1);
   }
   .textInput:focus {
     border-bottom: 2px solid var(--primaryColor);
   }
   .submitBtn {
-    background: var(--primaryColor);
+    background: none;
     height: 40px;
     border: none;
     border-radius: 10px;
@@ -103,10 +117,30 @@ body {
     text-align: center;
     outline: none;
     cursor: pointer;
-    margin-left: 25px;
-  }
-  .submitBtn:hover {
-    background: none;
     border: 2px solid var(--primaryColor);
     color: var(--primaryColor);
+  }
+  .submitBtn:hover {
+    background: var(--primaryColor);
+    border: 2px solid var(--primaryColor);
+    color: var(--boxesColor);
+  }
+
+
+  .closeBtn {
+    background: none;
+    width: 5vw;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: var(--errorColor);
+    text-transform: uppercase;
+    text-align: center;
+    outline: none;
+    border: 2px solid var(--errorColor);
+    cursor: pointer;
+  }
+  .closeBtn:hover {
+    background: var(--errorColor);
+    color: var(--boxesColor);
   }

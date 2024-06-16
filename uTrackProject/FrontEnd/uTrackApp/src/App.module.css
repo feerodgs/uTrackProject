@@ -16,6 +16,7 @@
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .letter {
@@ -40,7 +41,7 @@
 
 .letterback {
   background-color: var(--secondaryColor);
-  width: 550px;
+  width: 29vw;
   height: 50%;
   margin-top: 20%;
   position: absolute;
@@ -62,7 +63,7 @@
 
 .letterdown {
   background-color: var(--thirdColor);
-  width: 550px;
+  width: 29vw;
   height: 60%;
   margin-top: 20%;
   position: absolute;
@@ -85,30 +86,4 @@
 
 .logo {
   width: 100px;
-}
-
-/* Resposivo para telas 750px ou inferiores*/
-@media screen and (max-width: 550px){
-  .letterback {
-    width: 500px;
-    height: 30%;
-  }
-  
-  .letterdown {
-    width: 500px;
-    height: 30%;
-  }
-
-  .letterfront {
-    width: 0;
-    height: 0;
-    border-left: 250px solid transparent;
-    border-right: 250px solid transparent;
-    border-bottom: 20vh solid var(--primaryColor);
-    position: absolute;
-    top: calc(42% + 280px);
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-  }
 }
