@@ -1,9 +1,20 @@
-FROM node:latest AS build
+# Use a imagem oficial do Node.js como base
+FROM node:14
+
+# Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
-COPY package.json ./
-COPY package-lock.json ./
+
+# Copie os arquivos de configuração do Node.js para o diretório de trabalho
+COPY package.json package-lock.json ./
+
+# Instale as dependências
 RUN npm install
+
+# Copie o restante da aplicação para o diretório de trabalho
 COPY . .
-RUN npm run build
+
+# Exponha a porta que a aplicação irá rodar
 EXPOSE 3000
-CMD ["node", "dist/index.js"]
+
+# Comando para rodar a aplicação
+CMD ["node", "src/index.js"]
