@@ -7,4 +7,5 @@ app.listen(port, async () => {
   await connectToDatabase()
  
   console.log(`App running in http://localhost:${port}`)
+  console.log("===============================================")
 })
