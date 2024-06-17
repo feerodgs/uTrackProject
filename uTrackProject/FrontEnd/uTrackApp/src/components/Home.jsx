@@ -56,7 +56,7 @@ const Home = () => {
   const handleDeleteTrack = async (encomenda) => {
     try {
       const response = await deleteTrack(encomenda);
-      location.reload();
+      // location.reload();
     } catch (error) {
       console.log("Erro ao deletar a Track: ", error);
       alert("Erro ao deletar a Track");

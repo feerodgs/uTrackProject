@@ -81,18 +81,20 @@ const sendTrackParams = async (track) => {
     }
 
     const connection = await connectToDatabase();
+    
     const query = 'INSERT INTO track (nome_produto, data_previsao, codigo_rastreio, codigo_usuario) SELECT ?, ?, ?, U.id FROM usuario U WHERE U.email = ?';
-
-    const [rows] = await connection.execute(query, [nomeProduto, dataPrevisao, codigoRastreio, codigoUsuario]);
+    await connection.execute(query, [nomeProduto, dataPrevisao, codigoRastreio, codigoUsuario]);
+    
+    const queryId = 'SELECT ID FROM TRACK ORDER BY ID DESC LIMIT 1;';
+    const id = connection.execute(queryId);
+    
     await connection.end();
     
     // Fetch track movements for the single codigoRastreio
     const movimentos = await getTrack(codigoRastreio);
-    const numeroAleatorio = Math.floor(Math.random() * (251 - 100)) + 100;
-    
     // Create the expected result object
     const result = {
-        ID: numeroAleatorio,
+        ID: id,
         NOME_PRODUTO: nomeProduto,
         DATA_PREVISAO: dataPrevisao,
         CODIGO_RASTREIO: codigoRastreio,
