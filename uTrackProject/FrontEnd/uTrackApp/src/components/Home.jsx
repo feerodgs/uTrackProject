@@ -22,6 +22,15 @@ const Home = () => {
   const [rastreio, setRastreio] = useState('');
   const [entrega, setEntrega] = useState('');
 
+  const [filterProduto, setFilterProduto] = useState('');
+  const [filterRastreio, setFilterRastreio] = useState('');
+  const [filterDeDat, setFilterDeDat] = useState('');
+  const [filterAteDat, setFilterAteDat] = useState('');
+
+
+
+
+
   const toggleFilter = () => {
     setShowFilter(!showFilter);
     setShowAddSection(false);
@@ -57,7 +66,10 @@ const Home = () => {
   const handleAdd = async (event) => {
     event.preventDefault();
     try {
-      const response = await createTrack(user.userId, rastreio, entrega, produto);
+      const [year, month, day] = entrega.split("-");
+      const formattedDate = `${day}/${month}/${year}`;
+
+      const response = await createTrack(user.userId, rastreio, formattedDate, produto);
       const newTrack = await response.json();
       setEncomendas(prevEncomendas => [...prevEncomendas, newTrack]);
       setProduto('');
@@ -68,16 +80,29 @@ const Home = () => {
     }
   };
 
+
+
+
+  const applyFilters = (encomendas) => {
+    return encomendas.filter((encomenda) => {
+      const matchProduto = filterProduto ? encomenda.NOME_PRODUTO.toLowerCase().includes(filterProduto.toLowerCase()) : true;
+      const matchRastreio = filterRastreio ? encomenda.CODIGO_RASTREIO.toLowerCase().includes(filterRastreio.toLowerCase()) : true;
+      const matchDeDat = filterDeDat ? new Date(encomenda.DATA_PREVISAO) >= new Date(filterDeDat) : true;
+      const matchAteDat = filterAteDat ? new Date(encomenda.DATA_PREVISAO) <= new Date(filterAteDat) : true;
+      return matchProduto && matchRastreio && matchDeDat && matchAteDat;
+    });
+  };
+
+  const filteredEncomendas = applyFilters(encomendas);
+
   return (
     <>
       <header className={styles.header}>
         <div>
           <img className={styles.logoHome} src="/logo.png" alt="Logotipo uTrack" />
-          <button className={styles.submitBtn} onClick={signOut}>Sair</button>
         </div>
         <div>
-          <p>Utrack</p>
-          <a href=""><IconLarge name="lightMode" /></a>
+          <button className={styles.closeBtn} onClick={signOut}>Sair</button>
         </div>
       </header>
       <main className={styles.main}>
@@ -96,31 +121,28 @@ const Home = () => {
           </div>
           <div className={`${styles.filter} ${showFilter ? styles.show : ''}`}>
             <label htmlFor="produto" className={styles.label}>Produto</label>
-            <input type="text" className={styles.textInput} placeholder="texto" id="produto" />
+            <input type="text" className={styles.textInput} placeholder="Geladeira..." id="filterProduto" value={filterProduto} onChange={(e) => setFilterProduto(e.target.value)} />
             <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
-            <input type="text" className={styles.textInput} placeholder="texto" id="codRastreio" />
-            <label htmlFor="staus" className={styles.label}>Status</label>
-            <input type="text" className={styles.textInput} placeholder="texto" id="status" />
+            <input type="text" className={styles.textInput} placeholder="QQ83077..."  id="filterRastreio" value={filterRastreio} onChange={(e) => setFilterRastreio(e.target.value)} />
             <label htmlFor="deDat" className={styles.label}>De</label>
-            <input type="text" className={styles.textInput} placeholder="texto" id="deDat" />
+            <input type="date" className={styles.textInput} id="filterDeDat" value={filterDeDat} onChange={(e) => setFilterDeDat(e.target.value)} />
             <label htmlFor="ateDat" className={styles.label}>Até</label>
-            <input type="text" className={styles.textInput} placeholder="texto" id="ateDat" />
-            <input type="button" className={styles.submitBtn} value="Pesquisar" />
+            <input type="date" className={styles.textInput} id="filterAteDat" value={filterAteDat} onChange={(e) => setFilterAteDat(e.target.value)} />
           </div>
           <div className={`${styles.addSection} ${showAddSection ? styles.show : ''}`}>
             <form onSubmit={handleAdd}>
               <label htmlFor="produto" className={styles.label}>Produto</label>
-              <input type="text" className={styles.textInput} value={produto} id="produto" onChange={(e) => setProduto(e.target.value)} required />
+              <input type="text" className={styles.textInput} value={produto} id="produto" placeholder="Geladeira..." onChange={(e) => setProduto(e.target.value)} required />
               <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
-              <input type="text" className={styles.textInput} value={rastreio} id="codRastreio" onChange={(e) => setRastreio(e.target.value)} required />
+              <input type="text" className={styles.textInput} value={rastreio} id="codRastreio" placeholder="QQ83077..." onChange={(e) => setRastreio(e.target.value)} required />
               <label htmlFor="prevEntrega" className={styles.label}>Prev. Entrega</label>
-              <input type="text" className={styles.textInput} value={entrega} id="prevEntrega" onChange={(e) => setEntrega(e.target.value)} required />
+              <input type='date' className={styles.textInput} value={entrega} id="prevEntrega" onChange={(e) => setEntrega(e.target.value)} required />
               <button type="submit" className={styles.submitBtn}>Adicionar</button>
             </form>
           </div>
         </div>
         <div className={styles.section}>
-          {encomendas.map((encomenda) => (
+          {filteredEncomendas.map((encomenda) => (
             <div className={`${styles.box} ${selectedTracking === encomenda ? styles.expanded : ''}`} key={encomenda.ID}>
               <button onClick={() => handleDeleteTrack(encomenda.ID)} className={styles.deleteBtn}>
                 <FaTrashCan />

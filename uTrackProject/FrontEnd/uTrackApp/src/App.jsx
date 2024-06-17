@@ -41,7 +41,6 @@ function App() {
   const { route } = useAuthenticator(context => [context.route]);
   const [accessToken, setAccessToken] = useState(null);
   const [idToken, setIdToken] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const currentSession = async () => {
@@ -57,23 +56,11 @@ function App() {
     currentSession();
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className={styles.App}>
       {route !== 'authenticated' &&<img className={styles.logo} src="/logo.png" alt="Logotipo uTrack" />}
       <div className={styles.letter}>
-        {/* back triangle */}
-        {route !== 'authenticated' && <div className={styles.lettertop}></div>}
-        {/* back div */}
-        {route !== 'authenticated' && <div className={styles.letterback}></div>}
-        <div className={`${styles.loginForm} ${isExpanded ? styles.expanded : ''}`}>
+        <div className={`${styles.loginForm} ${styles.expanded}`}>
           <Authenticator formFields={formFields}>
             {({ signOut, user }) => (
               <div className={styles.container}>
@@ -82,10 +69,6 @@ function App() {
             )}
           </Authenticator>
         </div>
-        {/* front div */}
-        {route !== 'authenticated' && <div className={styles.letterdown}></div>}
-        {/* front triangle */}
-        {route !== 'authenticated' && <div className={styles.letterfront}></div>}
       </div>
     </div>
   )

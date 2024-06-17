@@ -1,4 +1,4 @@
-/* Variáveis globais */
+/* Variï¿½veis globais */
 :root {
     --background-color: #343434;
     --font-family: "Roboto", sans-serif;
@@ -7,4 +7,5 @@
     --secondaryColor: #057D97;
     --thirdColor: #0084A0;
     --boxesColor: #EFECE4;
+    --errorColor: #F36F61;
   }

@@ -6,6 +6,7 @@
 
 
  .header {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 50px;
@@ -13,7 +14,7 @@
   margin-top: -50px;
  }
  .logoHome {
-  width: 80px;
+  width: 50px;
  }
  .header div {
   align-items: center;
@@ -29,15 +30,17 @@
   color: var(--boxesColor);
  }
  .main {
-    max-width: 1800px;
     height: 500px;
     display: grid;
-    grid-template-areas: 'filter filter filter filter'
-    'section section section section';
+    grid-template-areas: 'filter filter filter'
+    'section section section';
   }
   .filterSection {
+    width: 90vw;
+    max-width: 1800px;
     grid-area: filter;
-    position: relative; /* Define a posição relativa para a seção pai */
+    margin-top: 25px;
+    position: relative;
   }
 
   .filterHeader {
@@ -61,9 +64,9 @@
   }
 
   .filter, .addSection {
-    border: 3px solid var(--primaryColor);
+    border: 1px solid var(--primaryColor);
     padding: 2%;
-    display: flex;
+    display: none;
     gap: 20px;
     max-height: 0;
     opacity: 0;
@@ -71,20 +74,19 @@
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   }
   .addSection {
-    margin-top: -45px;
+    margin-top: 0px;
   }
   .addSection form {
     display: flex;
     gap: 30px;
   }
-  .addSection form input {
-    width: 50%;
-  }
   
   .filter.show, .addSection.show {
-    max-height: 500px;
+    display: flex;
+    max-height: 1000px;
     opacity: 1;
     transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+    border-radius: 10px;
   }
 
   .section {
@@ -102,14 +104,15 @@
   
   .trackBox {
     background: var(--primaryColor);
-    width: 500px;
+    width: 40vw;
     max-height: 676px;
+    margin: 0 auto;
+    left: 50%; /* Ajusta a posição para o centro */
+    transform: translateX(-50%);
     margin-top: 0px;
     border-radius: 20px;
     position: absolute;
-    left: 500px;
     overflow-x: auto;
-    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.6);
   }
   .trackBox::-webkit-scrollbar {
     width: 5px;
@@ -143,14 +146,8 @@
     margin-top: 25px;
     margin-left: 25px;
   }
-  .timeline {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
   .timelineItem {
       display: flex;
-      margin-bottom: 20px;
   }
   .timelineDate {
       width: 40%;
@@ -166,10 +163,6 @@
       margin: 0;
       padding: 5px 0;
   }
-  .container {
-    width: 100%;
-    width: 1000px;
-  }
 
 
   .box {
@@ -181,22 +174,115 @@
 
   }
 
-@media screen and (max-width: 550px){
-  .main {
-    width: 550px;
-  }
+@media screen and (max-width: 600px){
   .filterSection {
-    width: 550px;
+    width: 90vw;
   }
+
+  .trackBox {
+    width: 80vw;
+  }
+
+  .filter.show, .addSection.show {
+    display: flex;
+    flex-direction: column;
+  }
+  .addSection.show form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .box {
+    width: 90vw;
+  }
+
+  .filterBtn {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    border-left: 1px solid black;
+    cursor: pointer;
+  }
+
   .section {
     grid-template-columns: auto;
   }
+}
+
+@media screen and (max-width: 1024px){
+  .filterSection {
+    width: 90vw;
+  }
+  .filter.show, .addSection.show {
+    display: flex;
+    flex-direction: column;
+  }
+  .addSection.show form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .filterSection {
+    width: 90vw;
+  }
+
   .trackBox {
-    background: var(--primaryColor);
-    width: 500px;
-    max-height: 676px;
-    margin-top: 180px;
-    border-radius: 20px;
-    position: absolute;
+    width: 60vw;
+  }
+
+  .filter.show, .addSection.show {
+    display: flex;
+    flex-direction: column;
+  }
+  .addSection.show form {
+    display: flex;
+    flex-direction: column;
+  }
+  .addSection form input {
+    width: 100%;
+  }
+  .filter input {
+    width: 100%;
+  }
+
+  .filterBtn {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    border-left: 1px solid black;
+    cursor: pointer;
+  }
+
+  .section {
+    grid-template-columns: auto;
+  }
+
+  .closeBtn {
+    background: none;
+    width: 15vw;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .section {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 1800px) {
+  .section {
+    grid-template-columns: auto auto auto;
   }
 }
