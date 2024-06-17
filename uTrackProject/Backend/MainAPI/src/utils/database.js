@@ -1,12 +1,22 @@
 import mysql from 'mysql2/promise';
 
+
 const connectionConfig = {
-    host: 'localhost',
+    host: 'mysql-service',
     user: 'test',
     password: 'masterkey',
     database: 'utrack',
     connectTimeout: 900000000
 };
+
+
+// const connectionConfig = {
+//     host: 'localhost',
+//     user: 'test',
+//     password: 'masterkey',
+//     database: 'utrack',
+//     connectTimeout: 900000000
+// };
 
 // const connectionConfig = {
 //     host: 'localhost',
