@@ -2,11 +2,8 @@ import styles from './Home.module.css';
 import { useState } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { FaTrashCan } from 'react-icons/fa6';
-
 import Icon from './icons/Icon.jsx';
-import IconLarge from './icons/IconLarge.jsx';
 import IconBlack from './icons/IconBlack.jsx';
-
 import { useFetchTracks, useCreateTrack, useDeleteTrack, useFetchTrack } from '../server.jsx';
 
 const Home = () => {
@@ -17,6 +14,7 @@ const Home = () => {
   const { encomendas, setEncomendas, error, loading } = useFetchTracks(user.userId);
   const { createTrack } = useCreateTrack();
   const { deleteTrack } = useDeleteTrack();
+  const { getTrack } = useFetchTrack();
 
   const [produto, setProduto] = useState('');
   const [rastreio, setRastreio] = useState('');
@@ -26,10 +24,6 @@ const Home = () => {
   const [filterRastreio, setFilterRastreio] = useState('');
   const [filterDeDat, setFilterDeDat] = useState('');
   const [filterAteDat, setFilterAteDat] = useState('');
-
-
-
-
 
   const toggleFilter = () => {
     setShowFilter(!showFilter);
@@ -49,17 +43,19 @@ const Home = () => {
     return <p>Erro: {error.message}</p>;
   }
 
-  const handleCardClick = (encomenda) => {
-    setSelectedTracking(encomenda === selectedTracking ? null : encomenda);
-  };
-
-const handleDeleteTrack = async (encomendaId) => {
+  const handleCardClick = async (encomenda) => {
     try {
-      console.log(encomendaId);
-      await deleteTrack(encomendaId);
-      setEncomendas((prevEncomendas) =>
-        prevEncomendas.filter((encomenda) => encomenda.ID !== encomendaId)
-      );
+      const trackData = await getTrack(encomenda.CODIGO_RASTREIO); // Corrigir a linha aqui
+      setSelectedTracking(selectedTracking?.ID === encomenda.ID ? null : { ...encomenda, track: trackData });
+    } catch (error) {
+      console.error('Erro ao pegar os dados de rastreamento:', error);
+    }
+  };
+  
+  const handleDeleteTrack = async (encomenda) => {
+    try {
+      const response = await deleteTrack(encomenda);
+      location.reload();
     } catch (error) {
       console.log("Erro ao deletar a Track: ", error);
       alert("Erro ao deletar a Track");
@@ -82,9 +78,6 @@ const handleDeleteTrack = async (encomendaId) => {
       console.error('Erro ao enviar track:', error.message);
     }
   };
-
-
-
 
   const applyFilters = (encomendas) => {
     return encomendas.filter((encomenda) => {
@@ -126,7 +119,7 @@ const handleDeleteTrack = async (encomendaId) => {
             <label htmlFor="produto" className={styles.label}>Produto</label>
             <input type="text" className={styles.textInput} placeholder="Geladeira..." id="filterProduto" value={filterProduto} onChange={(e) => setFilterProduto(e.target.value)} />
             <label htmlFor="codRastreio" className={styles.label}>Cod. Rastreio</label>
-            <input type="text" className={styles.textInput} placeholder="QQ83077..."  id="filterRastreio" value={filterRastreio} onChange={(e) => setFilterRastreio(e.target.value)} />
+            <input type="text" className={styles.textInput} placeholder="QQ83077..." id="filterRastreio" value={filterRastreio} onChange={(e) => setFilterRastreio(e.target.value)} />
             <label htmlFor="deDat" className={styles.label}>De</label>
             <input type="date" className={styles.textInput} id="filterDeDat" value={filterDeDat} onChange={(e) => setFilterDeDat(e.target.value)} />
             <label htmlFor="ateDat" className={styles.label}>Até</label>
@@ -146,7 +139,7 @@ const handleDeleteTrack = async (encomendaId) => {
         </div>
         <div className={styles.section}>
           {filteredEncomendas.map((encomenda) => (
-            <div className={`${styles.box} ${selectedTracking === encomenda ? styles.expanded : ''}`} key={encomenda.ID}>
+            <div className={`${styles.box} ${selectedTracking?.ID === encomenda.ID ? styles.expanded : ''}`} key={encomenda.ID}>
               <button onClick={() => handleDeleteTrack(encomenda.ID)} className={styles.deleteBtn}>
                 <FaTrashCan />
               </button>
@@ -160,31 +153,25 @@ const handleDeleteTrack = async (encomendaId) => {
                 <p>{new Date(encomenda.DATA_PREVISAO).toLocaleDateString()}</p>
               </div>
               <a onClick={() => handleCardClick(encomenda)}>
-                {selectedTracking === encomenda ? "Ver menos" : "Ver mais"}
+                {selectedTracking?.ID === encomenda.ID ? "Ver menos" : "Ver mais"}
               </a>
               <br /><br />
-              {selectedTracking === encomenda && (
+              {selectedTracking?.ID === encomenda.ID && (
                 <div className={styles.trackBox}>
                   <header>
                     <h2>Rastreamento de Encomenda</h2>
                     <a href="#" onClick={() => setSelectedTracking(null)}><IconBlack name="close" /></a>
                   </header>
-                  
                   <div className={styles.timeline}>
-                    {encomenda.MOVIMENTOS ? (
-                      encomenda.MOVIMENTOS.map((movimento, index) => (
-                        <div key={index} className={styles.timelineItem}>
-                          <div className={styles.timelineDate}>
-                            <p>{new Date(movimento.data).toLocaleString()}</p>
-                          </div>
-                          <div className={styles.timelineContent}>
-                            <p>Descrição: {movimento.descricao}</p>
-                            <p>Unidade: {movimento.unidade}</p>
-                            <p>Cidade: {movimento.cidade}</p>
-                            <p>UF: {movimento.uf}</p>
-                          </div>
-                        </div>
-                      ))
+                    {selectedTracking?.track?.length ? (
+                      <table className={styles.timelineTable}>
+                        {selectedTracking.track.map((movimento, index) => (
+                          <tr key={index} className={styles.timelineRow}>
+                            <td className={styles.timelineData}>{new Date(movimento.data).toLocaleString()}</td>
+                            <td className={styles.timelineDesc}><b>{movimento.descricao}</b><br />{movimento.unidade}<br />{movimento.cidade}/{movimento.uf}</td>
+                          </tr>
+                        ))}
+                      </table>
                     ) : (
                       <p>Movimentos não disponíveis</p>
                     )}

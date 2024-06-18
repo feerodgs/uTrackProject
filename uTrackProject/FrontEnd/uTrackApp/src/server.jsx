@@ -29,34 +29,28 @@ const useFetchTracks = (userId) => {
 };
 
 
-const useFetchTrack = (trackingCode) => {
-    const [track, setTrack] = useState([]);
+const useFetchTrack = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:3000/tracks/tracks/${trackingCode}`);
-                if (!response.ok) {
-                    throw new Error('Erro ao buscar dados de rastreamento');
-                }
-                const data = await response.json();
-                setTrack(data);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [trackingCode]);
-
-    return { track, error, loading };
-};
-
-export default useFetchTrack;
+  
+    const getTrack = async (codigoRastreio) => {
+      setLoading(true);
+      try {
+        const response = await fetch(`http://localhost:3000/tracks/${codigoRastreio}`);
+        if (!response.ok) {
+          throw new Error('Erro ao pegar movimentos da track');
+        }
+        const data = await response.json();  // Converta a resposta para JSON aqui
+        return data;
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    return { getTrack, error, loading };
+  };
 
 const useCreateTrack = () => {
     const [success, setSuccess] = useState(false);
