@@ -18,6 +18,7 @@ const useFetchTracks = (userId) => {
                 setError(error);
             } finally {
                 setLoading(false);
+                
             }
         };
 
@@ -26,6 +27,36 @@ const useFetchTracks = (userId) => {
 
     return { encomendas, error, loading, setEncomendas };
 };
+
+
+const useFetchTrack = (trackingCode) => {
+    const [track, setTrack] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/tracks/tracks/${trackingCode}`);
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar dados de rastreamento');
+                }
+                const data = await response.json();
+                setTrack(data);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [trackingCode]);
+
+    return { track, error, loading };
+};
+
+export default useFetchTrack;
 
 const useCreateTrack = () => {
     const [success, setSuccess] = useState(false);
@@ -93,4 +124,4 @@ const useDeleteTrack = () => {
     return { success, error, loading, deleteTrack };
 };
 
-export{ useFetchTracks, useCreateTrack, useDeleteTrack };
+export{ useFetchTracks, useCreateTrack, useDeleteTrack, useFetchTrack };

@@ -42,7 +42,10 @@ router.post("/", async (request, response) => {
 
 // delete track
 router.delete("/:id", async (request, response) => {
-    await deleteTrack(request.params.id)
+
+    const codigo = request.params.id;
+    console.log(codigo + "daslkdlaskdlas");
+    await deleteTrack(codigo);
     return response.status(204).send()
 })
 

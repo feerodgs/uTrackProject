@@ -7,7 +7,7 @@ import Icon from './icons/Icon.jsx';
 import IconLarge from './icons/IconLarge.jsx';
 import IconBlack from './icons/IconBlack.jsx';
 
-import { useFetchTracks, useCreateTrack, useDeleteTrack } from '../server.jsx';
+import { useFetchTracks, useCreateTrack, useDeleteTrack, useFetchTrack } from '../server.jsx';
 
 const Home = () => {
   const [selectedTracking, setSelectedTracking] = useState(null);
@@ -53,10 +53,13 @@ const Home = () => {
     setSelectedTracking(encomenda === selectedTracking ? null : encomenda);
   };
 
-  const handleDeleteTrack = async (encomenda) => {
+const handleDeleteTrack = async (encomendaId) => {
     try {
-      const response = await deleteTrack(encomenda);
-      // location.reload();
+      console.log(encomendaId);
+      await deleteTrack(encomendaId);
+      setEncomendas((prevEncomendas) =>
+        prevEncomendas.filter((encomenda) => encomenda.ID !== encomendaId)
+      );
     } catch (error) {
       console.log("Erro ao deletar a Track: ", error);
       alert("Erro ao deletar a Track");
