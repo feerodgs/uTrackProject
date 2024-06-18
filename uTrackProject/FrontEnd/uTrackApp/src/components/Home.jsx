@@ -172,19 +172,15 @@ const handleDeleteTrack = async (encomendaId) => {
                   
                   <div className={styles.timeline}>
                     {encomenda.MOVIMENTOS ? (
-                      encomenda.MOVIMENTOS.map((movimento, index) => (
-                        <div key={index} className={styles.timelineItem}>
-                          <div className={styles.timelineDate}>
-                            <p>{new Date(movimento.data).toLocaleString()}</p>
-                          </div>
-                          <div className={styles.timelineContent}>
-                            <p>Descrição: {movimento.descricao}</p>
-                            <p>Unidade: {movimento.unidade}</p>
-                            <p>Cidade: {movimento.cidade}</p>
-                            <p>UF: {movimento.uf}</p>
-                          </div>
-                        </div>
-                      ))
+                      <table className={styles.timelineTable}>
+                        {encomenda.MOVIMENTOS.map((movimento, index) => (
+                          <tr key={index} className={styles.timelineRow}>
+                            <td className={styles.timelineData}>{new Date(movimento.data).toLocaleString()}</td>
+                            <td className={styles.timelineDesc}><b>{movimento.descricao}</b><br />{movimento.unidade}<br />{movimento.cidade}/{movimento.uf}</td>
+                            <br /><br />
+                          </tr>
+                        ))}
+                      </table>
                     ) : (
                       <p>Movimentos não disponíveis</p>
                     )}
